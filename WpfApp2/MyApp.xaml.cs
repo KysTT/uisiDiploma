@@ -20,8 +20,8 @@ namespace WpfApp2
         List<int> testquestionNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
         int qNum = 0;
-        int i;
-        int score;
+        int i = 0;
+        int score = 0;
 
         public MainWindow()
         {
@@ -154,7 +154,9 @@ namespace WpfApp2
                 i = testquestionNumbers[qNum];
             else
             {
-                scoreText.Content = "Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + ((float)score / testquestionNumbers.Count) * 100 + "%";
+                float totalScore = 0.00f;
+                totalScore = (float)score / testquestionNumbers.Count;
+                scoreText.Content = "Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + (totalScore * 100) + "%";
                 ans1.Visibility = Visibility.Hidden; ans2.Visibility = Visibility.Hidden; ans3.Visibility = Visibility.Hidden; ans4.Visibility = Visibility.Hidden; txtQuestion.Visibility = Visibility.Hidden;
             }
 
