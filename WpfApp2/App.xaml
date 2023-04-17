@@ -1,0 +1,11 @@
+﻿<Application x:Class="WpfApp2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp2"
+             StartupUri="MyApp.xaml">
+    <Application.Resources>
+        
+
+        <Style TargetType="{x:Type Rectangle}"/>
+    </Application.Resources>
+</Application>

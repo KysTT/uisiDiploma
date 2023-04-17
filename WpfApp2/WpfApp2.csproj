@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="close-button.png" />
+    <None Remove="form1.png" />
+    <None Remove="uisi.jpg" />
+    <None Remove="urtisi_logo_95_60_0_0.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="urtisi_logo_95_60_0_0.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Notification.Wpf" Version="6.1.0.5" />
+    <PackageReference Include="SciChart.Wpf.UI" Version="3.1.251" />
+    <PackageReference Include="SciChart.Wpf.UI.Transitionz" Version="3.1.251" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="close-button.png" />
+    <Resource Include="form1.png" />
+  </ItemGroup>
+
+</Project>
