@@ -127,7 +127,6 @@ namespace WpfApp2
             }
         }
 
-
         private void CheckAnswer(object sender, RoutedEventArgs e)
         {
             Button senderButton = sender as Button;
@@ -154,8 +153,9 @@ namespace WpfApp2
                 i = testquestionNumbers[qNum];
             else
             {
-                float totalScore = 0.00f;
+                double totalScore;
                 totalScore = (float)score / testquestionNumbers.Count;
+                totalScore = Math.Round(totalScore, 2);
                 scoreText.Content = "Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + (totalScore * 100) + "%";
                 ans1.Visibility = Visibility.Hidden; ans2.Visibility = Visibility.Hidden; ans3.Visibility = Visibility.Hidden; ans4.Visibility = Visibility.Hidden; txtQuestion.Visibility = Visibility.Hidden;
             }
