@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.22621.755" />
     <PackageReference Include="Notification.Wpf" Version="6.1.0.5" />
     <PackageReference Include="SciChart.Wpf.UI" Version="3.1.251" />
     <PackageReference Include="SciChart.Wpf.UI.Transitionz" Version="3.1.251" />

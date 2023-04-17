@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
-        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale" x:Class="WpfApp2.MainWindow"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WpfApp2.MainWindow"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
         Title="MainWindow" Background="#FFE5E5E5" WindowStyle="None" 
@@ -16,7 +16,7 @@
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border>
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
@@ -32,7 +32,7 @@
                                 </Style>
                             </Border.Style>
                             <Grid Background="Transparent">
-                                <ContentPresenter></ContentPresenter>
+                                <ContentPresenter/>
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -44,10 +44,10 @@
     <Grid >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
 
@@ -78,7 +78,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Testik" Content="Тест" BorderThickness="0,0,0,0" Background="#19ACC7FF" FontFamily="Arial" FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="16,1,1,1" Grid.IsSharedSizeScope="True" UseLayoutRounding="True" Click="Testik_Click" DockPanel.Dock="Top" Height="56" Width="291" Margin="-112,0,0,-100">
+            <Button x:Name="Test" Content="Тест" BorderThickness="0,0,0,0" Background="#19ACC7FF" FontFamily="Arial" FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="16,1,1,1" Grid.IsSharedSizeScope="True" UseLayoutRounding="True" Click="Test_Click" DockPanel.Dock="Top" Height="56" Width="291" Margin="-112,0,0,-100">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
@@ -128,17 +128,23 @@
             </Button>
         </DockPanel>
         <Label x:Name="Label_Мобильные_СС" Content="Мобильные сети сотовой подвижной связи" Foreground="White" FontFamily="Roboto" FontSize="24" FontWeight="Bold" Padding="16,0,0,0" VerticalContentAlignment="Center" Margin="10,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}"/>
-        <Grid x:Name="TheoryGrid" Margin="302,66,28,16">
-            <RichTextBox x:Name="Theory1" Margin="32,0,0,0" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Visibility="Hidden">
+        <DockPanel x:Name="ContentTheory1" 
+                   LastChildFill="False" 
+                   Margin="302,66,28,16" Visibility="Hidden">
+            <RichTextBox x:Name="Theory1" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial">
                 <FlowDocument>
                     <Paragraph FontSize="14" Padding="15,15,0,0" TextIndent="10">
                         <Run Text="1.2.1 "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Bold>
                             <Italic>
                                 <Run Text="Множественный доступ"/>
                             </Italic>
                         </Bold>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" (multiple access) – организация совместного использования ограниченного участка спектра многими пользователями."/>
                     </Paragraph>
@@ -149,6 +155,8 @@
                             </Italic>
                         </Bold>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" – способ распределения ресурса между каналами."/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
@@ -157,13 +165,21 @@
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
                         <Run Text="1) "/>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Italic>
                             <Run Text="с частотным разделением каналов FDMA"/>
                         </Italic>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" (Frequency Division Multiple Access. В системах с FDMA каждому пользователю на время сеанса связи выделяется канал с полосой частот Dfk в пределах общего частотного диапазона системы Dfp (рисунок 1.3). Возможное число каналов для FDMA-систем определяется по формуле:"/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -174,10 +190,24 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <RichTextBox x:Name="Theory2" Margin="32,0,0,0" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Visibility="Hidden">
+        </DockPanel>
+        <DockPanel x:Name="ContentTheory2" LastChildFill="False" Margin="302,66,28,16" Visibility="Hidden">
+            <RichTextBox x:Name="Theory2" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial">
                 <FlowDocument>
                     <Paragraph FontSize="14" Padding="15,15,0,0" TextIndent="10">
                         <Run Text="??? "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -186,6 +216,18 @@
                                 <Run Text="Тут ничего нет, но будет"/>
                             </Italic>
                         </Bold>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -200,6 +242,18 @@
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" – "/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
@@ -210,15 +264,63 @@
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Italic>
                             <Run Text="."/>
                         </Italic>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=":"/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -233,10 +335,24 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <RichTextBox x:Name="Theory3" Margin="32,0,0,0" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Visibility="Hidden">
+        </DockPanel>
+        <DockPanel x:Name="ContentTheory3" LastChildFill="False" Margin="302,66,28,16" Visibility="Hidden">
+            <RichTextBox x:Name="Theory3" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial">
                 <FlowDocument>
                     <Paragraph FontSize="14" Padding="15,15,0,0" TextIndent="10">
                         <Run Text="!!! "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -245,6 +361,18 @@
                                 <Run Text="Тут тоже пусто"/>
                             </Italic>
                         </Bold>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -260,11 +388,35 @@
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
                         <Run Text=" "/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -276,8 +428,44 @@
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                     </Paragraph>
                     <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
+                        <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                         <Run Text=" "/>
@@ -292,25 +480,18 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <Canvas x:Name="TestPart1Canvas" Background="#00000000" Visibility="Hidden">
-
-                <Label x:Name="scoreText" FontSize="18" Content=""/>
-                <Label x:Name="questionOrder" FontSize="18" Canvas.Left="590.181" Content="Вопрос ?" Canvas.Top="97.5"/>
-
-                <Image x:Name="qImage" Source="/img/uisi.jpg" Stretch="Uniform" Height="286" Width="572" Canvas.Left="345.182" Canvas.Top="136.5" />
-
-                <TextBlock x:Name="txtQuestion" TextAlignment="Center" Padding="3" FontSize="20" Width="572" TextWrapping="Wrap" Canvas.Left="345.182" Canvas.Top="427.5"><Run Text="Это как примерно выглядеть должно будет, ну типа, ага?"/></TextBlock>
-
-                <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans1" Width="200" Height="50" Content="Ответ 1" Tag="0" Canvas.Left="345.182" Canvas.Top="544.9" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans2" Width="200" Height="50" Content="Ответ 2" Tag="0" Canvas.Left="345.182" Canvas.Top="619.9" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans3" Width="200" Height="50" Content="Ответ 3" Tag="0" Canvas.Left="717.182" Canvas.Top="544.9" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans4" Width="200" Height="50" Content="Ответ 4" Tag="0" Canvas.Left="717.182" Canvas.Top="619.9" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <Button Background="#FFD55763" FontSize="18" Click="ButtonStartTestClick" x:Name="ButtonStartTest" Width="200" Height="50" Content="Начать тест" Tag="0" Canvas.Left="531.182" Canvas.Top="587.447" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <Button Background="#FFD55763" FontSize="18" Click="ButtonEndTestClick" x:Name="ButtonEndTest" Width="200" Height="50" Content="Завершить тест" Tag="0" Canvas.Left="531.182" Canvas.Top="697.447" HorizontalAlignment="Center" VerticalAlignment="Top" />
-
-            </Canvas>
-
-        </Grid>
+        </DockPanel>
+        <DockPanel x:Name="ContentTest" LastChildFill="False" Margin="302,66,28,16" Visibility="Hidden">
+            <Label x:Name="scoreText" FontSize="18" Content="" VerticalAlignment="Top" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
+            <TextBlock x:Name="txtQuestion" TextAlignment="Center" Padding="3" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,76,0,0"><Run Text=""/></TextBlock>
+            <Image x:Name="qImage" Source="/img/uisi.jpg" Stretch="Uniform" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" MaxWidth="480" MaxHeight="320" />
+            <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans1" Content="Ответ 1" Tag="0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Margin="0,33,240,0" Width="200" Height="50" />
+            <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans2" Content="Ответ 2" Tag="0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Margin="240,-50,0,0" Width="200" Height="50" />
+            <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans3" Content="Ответ 3" Tag="0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Margin="0,28,240,0" Width="200" Height="50" />
+            <Button Background="#FFD55763" FontSize="18" Click="CheckAnswer" x:Name="ans4" Content="Ответ 4" Tag="0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Margin="240,-50,0,0" Width="200" Height="50" />
+            <Button Background="#FFD55763" FontSize="18" Click="ButtonStartTestClick" x:Name="ButtonStartTest" Tag="0" Command="{Binding ElementName=TestPart1Canvas, Mode=OneWay}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Начать тест" Height="50" Margin="0,-125,0,0" Width="200"/>
+            <Button Background="#FFD55763" FontSize="18" Click="ButtonEndTestClick" x:Name="ButtonEndTest" Content="Завершить тест" Tag="0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Width="200" Height="50" Margin="0,25,0,0"/>
+        </DockPanel>
 
     </Grid>
 
