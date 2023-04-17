@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/release/netcoreapp3.0/urtisi_logo.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("urtisi_logo_95_60_0_0.png")]
 
 

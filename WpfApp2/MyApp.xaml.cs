@@ -124,9 +124,9 @@ namespace WpfApp2
             }
             else {
                 ContentTest.Visibility = Visibility.Visible;
-                Theory1.Visibility = Visibility.Hidden; 
-                Theory2.Visibility = Visibility.Hidden; 
-                Theory3.Visibility = Visibility.Hidden;
+                ContentTheory1.Visibility = Visibility.Hidden;
+                ContentTheory2.Visibility = Visibility.Hidden;
+                ContentTheory3.Visibility = Visibility.Hidden;
                 ButtonStartTest.Visibility = Visibility.Visible; 
                 ButtonEndTest.Visibility = Visibility.Hidden;
                 ans1.Visibility = Visibility.Hidden; 
