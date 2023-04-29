@@ -233,62 +233,10 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <RichTextBox x:Name="Theory3" Margin="32,0,0,0" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Visibility="Hidden">
+            <RichTextBox x:Name="Theory5" Margin="32,0,0,0" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Visibility="Hidden">
                 <FlowDocument>
-                    <Paragraph FontSize="14" Padding="15,15,0,0" TextIndent="10">
-                        <Run Text="!!! "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Bold>
-                            <Italic>
-                                <Run Text="Тут тоже пусто"/>
-                            </Italic>
-                        </Bold>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                    </Paragraph>
-                    <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
-                        <Bold>
-                            <Italic>
-                                <Run Text=" "/>
-                            </Italic>
-                        </Bold>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                    </Paragraph>
-                    <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
-                        <Run Text=" "/>
-                    </Paragraph>
-                    <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Italic>
-                            <Run Text=" "/>
-                        </Italic>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                    </Paragraph>
-                    <Paragraph FontSize="14" Padding="15,0,0,0" TextIndent="10">
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
-                        <InlineUIContainer>
-                            <Image Height="192" Source="/form1.png" Stretch="Fill" Width="680"/>
-                        </InlineUIContainer>
+                    <Paragraph>
+                        <InlineUIContainer/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
@@ -309,6 +257,7 @@
                 <Button Background="#FFD55763" FontSize="18" Click="ButtonEndTestClick" x:Name="ButtonEndTest" Width="200" Height="50" Content="Завершить тест" Tag="0" Canvas.Left="531.182" Canvas.Top="697.447" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
             </Canvas>
+            <WebBrowser x:Name="Theory3" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden"/>
 
         </Grid>
 

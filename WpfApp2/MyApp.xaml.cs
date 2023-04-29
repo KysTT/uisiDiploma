@@ -20,8 +20,8 @@ namespace WpfApp2
         List<int> testquestionNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
         int qNum = 0;
-        int i = 0;
-        int score = 0;
+        int i;
+        int score;
 
         public MainWindow()
         {
@@ -98,7 +98,8 @@ namespace WpfApp2
             Theory1.Visibility = Visibility.Hidden;
             Theory2.Visibility = Visibility.Hidden;
             TestPart1Canvas.Visibility = Visibility.Hidden;
-            Theory3.IsReadOnly = true;
+            Theory3.Navigate(new Uri("about:blank"));
+            Theory3.Navigate("C:\\Test.pdf");
         }
 
         private void Testik_Click(object sender, RoutedEventArgs e)
@@ -127,6 +128,7 @@ namespace WpfApp2
             }
         }
 
+
         private void CheckAnswer(object sender, RoutedEventArgs e)
         {
             Button senderButton = sender as Button;
@@ -153,10 +155,7 @@ namespace WpfApp2
                 i = testquestionNumbers[qNum];
             else
             {
-                double totalScore;
-                totalScore = (float)score / testquestionNumbers.Count;
-                totalScore = Math.Round(totalScore, 2);
-                scoreText.Content = "Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + (totalScore * 100) + "%";
+                scoreText.Content = "Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + ((float)score / testquestionNumbers.Count) * 100 + "%";
                 ans1.Visibility = Visibility.Hidden; ans2.Visibility = Visibility.Hidden; ans3.Visibility = Visibility.Hidden; ans4.Visibility = Visibility.Hidden; txtQuestion.Visibility = Visibility.Hidden;
             }
 
