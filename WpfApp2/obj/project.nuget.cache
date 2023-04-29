@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0pkWC9Usj+RrvObelfGgk4TvCuKXtHrYh47wKgHhU03YhF8YBcEZZmiAvFqBji1qe+vKRlzHkJYCuiAqZ97Hxw==",
+  "dgSpecHash": "yOZcwOzAwOmCV0KOZco0D5OvC0LCjtJJlJs24TtxS0d5fra1WIprtfHLTXgI1SsKKcuUYkTx90tnwzqlK55fpw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\Desktop\\Диплом\\Dickplome\\Моя\\uisiDiploma\\WpfApp2\\WpfApp2.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\mahapps.metro\\2.0.0-alpha0316\\mahapps.metro.2.0.0-alpha0316.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.web.webview2\\1.0.1722.45\\microsoft.web.webview2.1.0.1722.45.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.win32.primitives\\4.0.1\\microsoft.win32.primitives.4.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.win32.registry\\4.0.0\\microsoft.win32.registry.4.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",

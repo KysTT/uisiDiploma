@@ -86,3 +86,9 @@ C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\obj\Rel
 C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\obj\Release\netcoreapp3.0\WpfApp2.dll
 C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\obj\Release\netcoreapp3.0\WpfApp2.pdb
 C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\obj\Release\netcoreapp3.0\WpfApp2.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\bin\Release\netcoreapp3.0\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\bin\Release\netcoreapp3.0\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\bin\Release\netcoreapp3.0\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\bin\Release\netcoreapp3.0\Microsoft.Web.WebView2.Core.dll
+C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\bin\Release\netcoreapp3.0\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\Admin\Desktop\Диплом\Dickplome\Моя\uisiDiploma\WpfApp2\bin\Release\netcoreapp3.0\Microsoft.Web.WebView2.Wpf.dll

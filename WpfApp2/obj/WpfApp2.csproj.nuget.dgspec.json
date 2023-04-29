@@ -45,6 +45,10 @@
         "netcoreapp3.0": {
           "targetAlias": "netcoreapp3.0",
           "dependencies": {
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.1722.45, )"
+            },
             "Notification.Wpf": {
               "target": "Package",
               "version": "[6.1.0.5, )"

@@ -10,7 +10,9 @@
         Title="MainWindow" Background="#FFE5E5E5" WindowStyle="None" 
         MinHeight="576" MinWidth="1024"
         Width="1600" Height="900"
-        SizeChanged="OnSizeChanged">
+        SizeChanged="OnSizeChanged"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf">
+
 
     <Window.Resources>
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
@@ -240,6 +242,7 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
+            <wv2:WebView2 Name="Theory3" Source="Assets/Test.pdf" Margin="32,10,10,10"/>
             <Canvas x:Name="TestPart1Canvas" Background="#00000000" Visibility="Hidden">
 
                 <Label x:Name="scoreText" FontSize="18" Content=""/>
@@ -257,7 +260,6 @@
                 <Button Background="#FFD55763" FontSize="18" Click="ButtonEndTestClick" x:Name="ButtonEndTest" Width="200" Height="50" Content="Завершить тест" Tag="0" Canvas.Left="531.182" Canvas.Top="697.447" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
             </Canvas>
-            <WebBrowser x:Name="Theory3" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden"/>
 
         </Grid>
 

@@ -89,6 +89,7 @@ namespace WpfApp2
             Theory3.Visibility = Visibility.Hidden;
             TestPart1Canvas.Visibility = Visibility.Hidden;
             Theory2.IsReadOnly = true;
+
         }
 
         private void Theory3ButtonClick(object sender, RoutedEventArgs e)
@@ -98,8 +99,11 @@ namespace WpfApp2
             Theory1.Visibility = Visibility.Hidden;
             Theory2.Visibility = Visibility.Hidden;
             TestPart1Canvas.Visibility = Visibility.Hidden;
-            Theory3.Navigate(new Uri("about:blank"));
-            Theory3.Navigate("C:\\Test.pdf");
+            //Theory3.Navigate(new Uri("about:blank"));
+            //Theory3.Navigate("C:\\Test.pdf");
+            //Theory3.NavigateToString("pack://application:,,,/Test.pdf");
+
+
         }
 
         private void Testik_Click(object sender, RoutedEventArgs e)

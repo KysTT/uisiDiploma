@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
+    <ApplicationIcon>bin\Release\netcoreapp3.0\urtisi_logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="bin\Release\netcoreapp3.0\urtisi_logo.ico" />
     <Content Include="urtisi_logo_95_60_0_0.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1722.45" />
     <PackageReference Include="Notification.Wpf" Version="6.1.0.5" />
     <PackageReference Include="SciChart.Wpf.UI" Version="3.1.251" />
     <PackageReference Include="SciChart.Wpf.UI.Transitionz" Version="3.1.251" />
