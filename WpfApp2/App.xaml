@@ -4,8 +4,17 @@
              xmlns:local="clr-namespace:WpfApp2"
              StartupUri="MyApp.xaml">
     <Application.Resources>
-        
 
-        <Style TargetType="{x:Type Rectangle}"/>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Templates.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
     </Application.Resources>
+
 </Application>

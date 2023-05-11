@@ -19,29 +19,27 @@ namespace WpfApp2
     {
         List<int> testquestionNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-        int qNum = 0;
-        int i = 0;
-        int score = 0;
+        int questionNum, i, score;
 
         public MainWindow()
         {
             InitializeComponent();
-            TheoryGrid.Width = this.Width - 367;
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
 
-            this.DragMove();
+            DragMove();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Header.Width = this.Width + 22;
-            NavBar.Height = this.Height - 88;
-            TheoryGrid.Width = this.Width - 367;
+            Header.Width = Width - 16;
+            //NavBar.Height = this.Height - 53;
+            //ContentTheory1.Width = this.Width - 367; ContentTest.Width = this.Width - 367;
         }
+
         private void ButtonCloseClick(object sender, RoutedEventArgs e) => Close();
 
         private void OnButtonCloseMouseHover(object sender, MouseEventArgs e) => ButtonClosePath.Visibility = Visibility.Visible;
@@ -50,14 +48,11 @@ namespace WpfApp2
 
         private void ButtonMaximizeClick(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
+            if (WindowState == WindowState.Maximized) WindowState = WindowState.Normal;
             else
             {
                 MaxHeight = SystemParameters.VirtualScreenHeight - 34; MaxWidth = SystemParameters.VirtualScreenWidth+14;
-                this.WindowState = WindowState.Maximized;
+                WindowState = WindowState.Maximized;
             }
         }
 
@@ -65,43 +60,51 @@ namespace WpfApp2
 
         private void OnButtonMaximizeMouseLeave(object sender, MouseEventArgs e) => ButtonMaximizePath.Visibility = Visibility.Hidden;
 
-        private void ButtonMinimizeClick(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Minimized;
+        private void ButtonMinimizeClick(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
         private void OnButtonMinimizeMouseHover(object sender, MouseEventArgs e) => ButtonMinimizePath.Visibility = Visibility.Visible;
 
         private void OnButtonMinimizeMouseLeave(object sender, MouseEventArgs e) => ButtonMinimizePath.Visibility = Visibility.Hidden;
 
-        private void Theory1ButtonClick(object sender, RoutedEventArgs e)
+        private void Theory1Click(object sender, RoutedEventArgs e)
         {
-            if (Theory1.Visibility == Visibility.Visible) { Theory1.Visibility = Visibility.Hidden; }
-            else Theory1.Visibility = Visibility.Visible;
-            Theory2.Visibility = Visibility.Hidden;
-            Theory3.Visibility = Visibility.Hidden;
-            TestPart1Canvas.Visibility = Visibility.Hidden;
-            Theory1.IsReadOnly = true;
+            if (TheoryView.Visibility != Visibility.Visible) TheoryView.Visibility = Visibility.Visible;
+            else
+                if (TheoryView.Source == (new Uri(Environment.CurrentDirectory + "\\theory\\Отличия поколений.htm"))) 
+                    TheoryView.Visibility = Visibility.Hidden;
+
+            if (TheoryView.Source != (new Uri(Environment.CurrentDirectory + "\\theory\\Отличия поколений.htm"))) TheoryView.Source = (new Uri(Environment.CurrentDirectory + "\\theory\\Отличия поколений.htm"));
         }
 
-        private void Theory2ButtonClick(object sender, RoutedEventArgs e)
+        private void Theory2Click(object sender, RoutedEventArgs e)
         {
-            if (Theory2.Visibility == Visibility.Visible) { Theory2.Visibility = Visibility.Hidden; }
-            else Theory2.Visibility = Visibility.Visible;
-            Theory1.Visibility = Visibility.Hidden;
-            Theory3.Visibility = Visibility.Hidden;
-            TestPart1Canvas.Visibility = Visibility.Hidden;
-            Theory2.IsReadOnly = true;
+            if (TheoryView.Visibility != Visibility.Visible) TheoryView.Visibility = Visibility.Visible;
+            else 
+                if (TheoryView.Source == (new Uri(Environment.CurrentDirectory + "\\theory\\Оборудование мобильных сетей.htm"))) TheoryView.Visibility = Visibility.Hidden;
+
+            if (TheoryView.Source != (new Uri(Environment.CurrentDirectory + "\\theory\\Оборудование мобильных сетей.htm"))) TheoryView.Source = (new Uri(Environment.CurrentDirectory + "\\theory\\Оборудование мобильных сетей.htm"));
+
         }
 
-        private void Theory3ButtonClick(object sender, RoutedEventArgs e)
+        private void Theory3Click(object sender, RoutedEventArgs e)
         {
-            if (Theory3.Visibility == Visibility.Visible) { Theory3.Visibility = Visibility.Hidden; }
-            else Theory3.Visibility = Visibility.Visible;
-            Theory1.Visibility = Visibility.Hidden;
-            Theory2.Visibility = Visibility.Hidden;
-            TestPart1Canvas.Visibility = Visibility.Hidden;
-            Theory3.IsReadOnly = true;
+            if (TheoryView.Visibility != Visibility.Visible) TheoryView.Visibility = Visibility.Visible;
+            else
+                if (TheoryView.Source == (new Uri(Environment.CurrentDirectory + "\\theory\\Антенны.htm"))) TheoryView.Visibility = Visibility.Hidden;
+
+            if (TheoryView.Source != (new Uri(Environment.CurrentDirectory + "\\theory\\Антенны.htm"))) TheoryView.Source = (new Uri(Environment.CurrentDirectory + "\\theory\\Антенны.htm"));
         }
 
-        private void Testik_Click(object sender, RoutedEventArgs e)
+        private void Theory4Click(object sender, RoutedEventArgs e)
+        {
+            if (TheoryView.Visibility != Visibility.Visible) TheoryView.Visibility = Visibility.Visible;
+            else
+                if (TheoryView.Source == (new Uri(Environment.CurrentDirectory + "\\theory\\Распространение радиосигнала.htm"))) TheoryView.Visibility = Visibility.Hidden;
+
+            if (TheoryView.Source != (new Uri(Environment.CurrentDirectory + "\\theory\\Распространение радиосигнала.htm"))) TheoryView.Source = (new Uri(Environment.CurrentDirectory + "\\theory\\Распространение радиосигнала.htm"));
+        }
+
+        private void TestClick(object sender, RoutedEventArgs e)
         {
             ChangeVisibilityTest();
             RestartGame();
@@ -109,61 +112,79 @@ namespace WpfApp2
 
         private void ChangeVisibilityTest()
         {
-            if (TestPart1Canvas.Visibility == Visibility.Visible)
+            if (ContentTest.Visibility == Visibility.Visible)
             {
-                TestPart1Canvas.Visibility = Visibility.Hidden;
-                Theory1Button.Visibility = Visibility.Visible; Theory2Button.Visibility = Visibility.Visible; Theory3Button.Visibility = Visibility.Visible;
-                ButtonStartTest.Visibility = Visibility.Hidden;
-                ans1.Visibility = Visibility.Hidden; ans2.Visibility = Visibility.Hidden; ans3.Visibility = Visibility.Hidden; ans4.Visibility = Visibility.Hidden;
+                ContentTest.Visibility = Visibility.Hidden;
+                ContentTheory1.Visibility = Visibility.Visible;
+                TestMenu.Visibility = Visibility.Visible;
+                ButtonStartTest.Visibility = Visibility.Hidden; 
+                ans1.Visibility = Visibility.Hidden; 
+                ans2.Visibility = Visibility.Hidden; 
+                ans3.Visibility = Visibility.Hidden; 
+                ans4.Visibility = Visibility.Hidden;
             }
             else {
-                TestPart1Canvas.Visibility = Visibility.Visible;
-                Theory1.Visibility = Visibility.Hidden;
-                Theory2.Visibility = Visibility.Hidden;
-                Theory3.Visibility = Visibility.Hidden;
-                ButtonStartTest.Visibility = Visibility.Visible;
-                ans1.Visibility = Visibility.Hidden; ans2.Visibility = Visibility.Hidden; ans3.Visibility = Visibility.Hidden; ans4.Visibility = Visibility.Hidden;
-
+                ContentTheory1.Visibility = Visibility.Hidden;
+                ContentTest.Visibility = Visibility.Visible;
+                ButtonStartTest.Visibility = Visibility.Visible; 
+                ButtonEndTest.Visibility = Visibility.Hidden;
+                ans1.Visibility = Visibility.Hidden; 
+                ans2.Visibility = Visibility.Hidden; 
+                ans3.Visibility = Visibility.Hidden; 
+                ans4.Visibility = Visibility.Hidden;
             }
-        }
-
-        private void CheckAnswer(object sender, RoutedEventArgs e)
-        {
-            Button senderButton = sender as Button;
-            if (senderButton.Tag.ToString() == "1") score++;
-
-            if (qNum < 0) qNum = 0;
-            else qNum++;
-            scoreText.Content = "Текущий вопрос " + (qNum + 1) + " из " + testquestionNumbers.Count;
-            NextQuestion();
-        }
-
+        }        
+        
         private void RestartGame()
         {
-            score = 0; 
-            qNum = 0;
+            score = 0;
+            questionNum = 0;
             i = 0; 
             StartGame(); 
         }
 
+        private void StartGame()
+        {
+            var randomList = testquestionNumbers.OrderBy(a => Guid.NewGuid()).ToList();
+            testquestionNumbers = randomList;
+        }
+
+        private void CheckAnswer(object sender, RoutedEventArgs e)
+        {
+            Button? senderButton = sender as Button;
+            if (senderButton.Tag.ToString() == "1") score++;
+
+            questionNum++;
+            scoreText.Content = "Текущий вопрос " + (questionNum + 1) + " из " + testquestionNumbers.Count;
+            NextQuestion();
+        }
+
         private void NextQuestion()
         {
+            txtQuestion.Visibility = Visibility.Visible;
+            qImage.Visibility = Visibility.Hidden;
+            qImage.Source = new BitmapImage(new Uri("pack://application:,,,/form1.png"));
             ans1.Tag = ""; ans2.Tag = ""; ans3.Tag = ""; ans4.Tag = "";
-            if (qNum < testquestionNumbers.Count)
-                i = testquestionNumbers[qNum];
+            if (questionNum < testquestionNumbers.Count)
+                i = testquestionNumbers[questionNum];
             else
             {
                 double totalScore;
                 totalScore = (float)score / testquestionNumbers.Count;
                 totalScore = Math.Round(totalScore, 2);
+                MessageBox.Show("Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + (totalScore * 100) + "%");
                 scoreText.Content = "Правильных ответов " + score + "/" + testquestionNumbers.Count + " " + (totalScore * 100) + "%";
-                ans1.Visibility = Visibility.Hidden; ans2.Visibility = Visibility.Hidden; ans3.Visibility = Visibility.Hidden; ans4.Visibility = Visibility.Hidden; txtQuestion.Visibility = Visibility.Hidden;
+                ans1.Visibility = Visibility.Hidden; 
+                ans2.Visibility = Visibility.Hidden; 
+                ans3.Visibility = Visibility.Hidden; 
+                ans4.Visibility = Visibility.Hidden; 
+                txtQuestion.Visibility = Visibility.Hidden;
             }
 
             switch (i)
             {
                 case 1:
-                    
+                    qImage.Visibility = Visibility.Visible;
                     txtQuestion.Text = "Вопрос 1"; 
 
                     ans1.Content = "Ответ 1"; 
@@ -172,11 +193,10 @@ namespace WpfApp2
                     ans4.Content = "Ответ 4";
                     ans2.Tag = "1";
 
-                    //qImage.Source = new BitmapImage(new Uri("pack://application:,,,/form1.png"));
+                    qImage.Source = new BitmapImage(new Uri("pack://application:,,,/form1.png"));
                     break;
 
                 case 2:
-                    
                     txtQuestion.Text = "Вопрос 2";
 
                     ans1.Content = "Ответ 1 (Правильный)";
@@ -198,7 +218,6 @@ namespace WpfApp2
                     break;
 
                 case 4:
-                    
                     txtQuestion.Text = "Вопрос 4";
 
                     ans1.Content = "Ответ 1";
@@ -209,7 +228,6 @@ namespace WpfApp2
                     break;
 
                 case 5:
-                    
                     txtQuestion.Text = "Вопрос 5";
 
                     ans1.Content = "Ответ 1 (Правильный)";
@@ -220,7 +238,6 @@ namespace WpfApp2
                     break;
 
                 case 6:
-                    
                     txtQuestion.Text = "Вопрос 6";
 
                     ans1.Content = "Ответ 1";
@@ -231,7 +248,6 @@ namespace WpfApp2
                     break;
 
                 case 7:
-                    
                     txtQuestion.Text = "Вопрос 7";
 
                     ans1.Content = "Ответ 1";
@@ -242,7 +258,6 @@ namespace WpfApp2
                     break;
 
                 case 8:
-                    
                     txtQuestion.Text = "Вопрос 8";
 
                     ans1.Content = "Ответ 1";
@@ -253,7 +268,6 @@ namespace WpfApp2
                     break;
 
                 case 9:
-                    
                     txtQuestion.Text = "Вопрос 9";
 
                     ans1.Content = "Ответ 1";
@@ -276,19 +290,29 @@ namespace WpfApp2
             }
         }
 
-        private void StartGame()
+        private void ShowAfterTest()
         {
-            var randomList = testquestionNumbers.OrderBy(a => Guid.NewGuid()).ToList();
-            testquestionNumbers = randomList;
-            questionOrder.Content = null;
-            ButtonEndTest.Visibility = Visibility.Hidden;
+            TheoryMenu.Visibility = Visibility.Visible;
+            PracticeMenu.Visibility = Visibility.Visible;
+            ContentTheory1.Visibility = Visibility.Visible;
+        }
 
+        private void HideWhileTest()
+        {
+            TheoryMenu.Visibility = Visibility.Hidden;
+            PracticeMenu.Visibility = Visibility.Hidden;
+            ContentTheory1.Visibility = Visibility.Hidden;
         }
 
         private void ButtonStartTestClick(object sender, RoutedEventArgs e)
         {
-            ans1.Visibility = Visibility.Visible; ans2.Visibility = Visibility.Visible; ans3.Visibility = Visibility.Visible; ans4.Visibility = Visibility.Visible;
-            Theory1Button.Visibility = Visibility.Hidden; Theory2Button.Visibility = Visibility.Hidden; Theory3Button.Visibility = Visibility.Hidden;
+            TestMenu.Visibility = Visibility.Hidden;
+            ans1.Visibility = Visibility.Visible; 
+            ans2.Visibility = Visibility.Visible; 
+            ans3.Visibility = Visibility.Visible; 
+            ans4.Visibility = Visibility.Visible;
+            
+            HideWhileTest();
 
             ButtonStartTest.Visibility = Visibility.Hidden;
             StartGame();
@@ -299,7 +323,12 @@ namespace WpfApp2
 
         private void ButtonEndTestClick(object sender, RoutedEventArgs e)
         {
+            txtQuestion.Text = "";
+            qImage.Visibility = Visibility.Hidden;
+            scoreText.Content = "";
             ChangeVisibilityTest();
+            ShowAfterTest();
+            ButtonEndTest.Visibility = Visibility.Hidden;
         }
     }
 }

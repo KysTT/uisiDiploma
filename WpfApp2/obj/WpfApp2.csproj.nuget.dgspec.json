@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\WpfApp2\\WpfApp2\\WpfApp2.csproj": {}
+    "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\vadim\\uisiDiploma\\WpfApp2\\WpfApp2.csproj": {}
   },
   "projects": {
-    "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\WpfApp2\\WpfApp2\\WpfApp2.csproj": {
+    "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\vadim\\uisiDiploma\\WpfApp2\\WpfApp2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\WpfApp2\\WpfApp2\\WpfApp2.csproj",
+        "projectUniqueName": "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\vadim\\uisiDiploma\\WpfApp2\\WpfApp2.csproj",
         "projectName": "WpfApp2",
-        "projectPath": "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\WpfApp2\\WpfApp2\\WpfApp2.csproj",
+        "projectPath": "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\vadim\\uisiDiploma\\WpfApp2\\WpfApp2.csproj",
         "packagesPath": "C:\\Users\\Kys1_1\\.nuget\\packages\\",
-        "outputPath": "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\WpfApp2\\WpfApp2\\obj\\",
+        "outputPath": "E:\\бекап\\бекап\\Институт всё подряд\\net6.0-windows\\vadim\\uisiDiploma\\WpfApp2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
-            "targetAlias": "netcoreapp3.0",
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows7.0",
             "projectReferences": {}
           }
         },
@@ -42,16 +42,16 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
-          "targetAlias": "netcoreapp3.0",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows7.0",
           "dependencies": {
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.1722.45, )"
+            },
             "Notification.Wpf": {
               "target": "Package",
               "version": "[6.1.0.5, )"
-            },
-            "SciChart.Wpf.UI": {
-              "target": "Package",
-              "version": "[3.1.251, )"
             },
             "SciChart.Wpf.UI.Transitionz": {
               "target": "Package",
