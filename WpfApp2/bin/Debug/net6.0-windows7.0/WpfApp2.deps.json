@@ -1,0 +1,125 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "WpfApp2/1.0.0": {
+        "dependencies": {
+          "Microsoft.Web.WebView2": "1.0.1722.45",
+          "Notification.Wpf": "6.1.0.5",
+          "SciChart.Wpf.UI.Transitionz": "3.1.251"
+        },
+        "runtime": {
+          "WpfApp2.dll": {}
+        }
+      },
+      "Microsoft.Web.WebView2/1.0.1722.45": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.1722.45",
+            "fileVersion": "1.0.1722.45"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.1722.45",
+            "fileVersion": "1.0.1722.45"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.1722.45",
+            "fileVersion": "1.0.1722.45"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.1722.45"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.1722.45"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.1722.45"
+          }
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
+        "runtime": {
+          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.39.4716"
+          }
+        }
+      },
+      "Notification.Wpf/6.1.0.5": {
+        "dependencies": {
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39",
+          "System.ValueTuple": "4.5.0"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Notification.Wpf.dll": {
+            "assemblyVersion": "6.1.0.5",
+            "fileVersion": "6.1.0.5"
+          }
+        }
+      },
+      "SciChart.Wpf.UI.Transitionz/3.1.251": {
+        "runtime": {
+          "lib/netcoreapp3.0/SciChart.Wpf.UI.Transitionz.dll": {
+            "assemblyVersion": "3.1.251.0",
+            "fileVersion": "3.1.251.0"
+          }
+        }
+      },
+      "System.ValueTuple/4.5.0": {}
+    }
+  },
+  "libraries": {
+    "WpfApp2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Web.WebView2/1.0.1722.45": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KrR0p5HJW9CjhJEe/U3DgJ5FYQJ86adMwMF6wGkTlVh8G+8x9lk0NX6/wGdlBMYJ2rOy3V9PoJWuQ32n3t/Zvw==",
+      "path": "microsoft.web.webview2/1.0.1722.45",
+      "hashPath": "microsoft.web.webview2.1.0.1722.45.nupkg.sha512"
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8PZKqw9QOcu42xk8puY4P1+EXHL9YGOR9b7qhaYx5cILHul456H073tj99vyPcCt0W0781T9RwHqkx507ZyUpQ==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.39",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512"
+    },
+    "Notification.Wpf/6.1.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vSmA0dumtgHA0f+fAvK43KJZC82uZkQZgs3vdg/yi+rA4grRCuEQt2j495W8pZWl5EshSR8OvQfQ7l0uicV53w==",
+      "path": "notification.wpf/6.1.0.5",
+      "hashPath": "notification.wpf.6.1.0.5.nupkg.sha512"
+    },
+    "SciChart.Wpf.UI.Transitionz/3.1.251": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iMdsvumY9HO/6uurr6qLRxhYoN7u3EEC8lqBy11e65hBak9UISYu3KqvFs3jPi+xloxHpOJ7oz/tzCJn5wnHeg==",
+      "path": "scichart.wpf.ui.transitionz/3.1.251",
+      "hashPath": "scichart.wpf.ui.transitionz.3.1.251.nupkg.sha512"
+    },
+    "System.ValueTuple/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
+      "path": "system.valuetuple/4.5.0",
+      "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    }
+  }
+}

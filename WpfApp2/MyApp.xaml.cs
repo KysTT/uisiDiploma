@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,16 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         List<int> testquestionNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        int activePractice = 0;
+        int totalPracticeScore = 0;
 
         int questionNum, i, score;
+        Border myDraggableImage = new Border();
 
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -35,7 +40,7 @@ namespace WpfApp2
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Header.Width = Width - 16;
+            Header.Width = Width - 8;
             //NavBar.Height = this.Height - 53;
             //ContentTheory1.Width = this.Width - 367; ContentTest.Width = this.Width - 367;
         }
@@ -51,7 +56,7 @@ namespace WpfApp2
             if (WindowState == WindowState.Maximized) WindowState = WindowState.Normal;
             else
             {
-                MaxHeight = SystemParameters.VirtualScreenHeight - 34; MaxWidth = SystemParameters.VirtualScreenWidth+14;
+                MaxHeight = SystemParameters.VirtualScreenHeight - 34; MaxWidth = SystemParameters.VirtualScreenWidth + 14;
                 WindowState = WindowState.Maximized;
             }
         }
@@ -102,6 +107,204 @@ namespace WpfApp2
                 if (TheoryView.Source == (new Uri(Environment.CurrentDirectory + "\\theory\\Распространение радиосигнала.htm"))) TheoryView.Visibility = Visibility.Hidden;
 
             if (TheoryView.Source != (new Uri(Environment.CurrentDirectory + "\\theory\\Распространение радиосигнала.htm"))) TheoryView.Source = (new Uri(Environment.CurrentDirectory + "\\theory\\Распространение радиосигнала.htm"));
+        }
+
+        private void PracticeImage_Dragging(object sender, DragEventArgs e)
+        {
+
+            Point dropPosition = e.GetPosition(PracticeCanvas);
+
+            if (e.Source is not Canvas)
+            {
+                //myDraggableImage = (Image)FindName( ((Image)e.Source).Name);
+                myDraggableImage = (Border)((Image)e.Source).Parent;
+                Canvas.SetLeft(myDraggableImage, dropPosition.X);
+                Canvas.SetTop(myDraggableImage, dropPosition.Y);
+            }
+            else
+            {
+                Canvas.SetLeft(myDraggableImage, dropPosition.X);
+                Canvas.SetTop(myDraggableImage, dropPosition.Y);
+            }
+        }
+
+        private void PracticeDraggableImage_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                var myElement = (Border)FindName(((Border)sender).Name);
+                DragDrop.DoDragDrop(myElement, myElement, DragDropEffects.Move);
+            }
+        }
+
+        private  void Practice1Click(object sender, RoutedEventArgs e) 
+        {
+            activePractice = 1;
+
+            foreach (UIElement element in PracticeCanvas.Children)
+            {
+                if (element is Border)
+                {
+                    Border cb = (Border)element;
+                    cb.Visibility = Visibility.Visible;
+                    cb.BorderBrush = null;
+
+                    //if (cb.Name.EndsWith("1")) cb.Margin = new Thickness(13, -65, 0, 0);
+                }
+            }
+
+            if (sender is Button)
+                PracticeContent.Visibility = Visibility.Visible;
+            else
+            {
+                if (PracticeContent.Visibility == Visibility.Hidden) PracticeContent.Visibility = Visibility.Visible;
+                else PracticeContent.Visibility = Visibility.Hidden;
+            }
+        }
+        
+        private void StartPracticeClick(object sender, RoutedEventArgs e)
+        {
+            if (activePractice == 1) 
+            {
+                Random r = new Random();
+
+                PracticeCanvas.AllowDrop = true;
+                Practice1Image.Visibility = Visibility.Visible;
+                PracticeCanvas.Visibility = Visibility.Visible;
+
+                foreach (UIElement element in PracticeCanvas.Children)
+                {
+                    int rIntTop = r.Next(0, 400);
+                    int rIntLeft = r.Next(0, 400);
+                    if (element is Border)
+                    {
+                        Canvas.SetTop(element, rIntTop);
+                        Canvas.SetLeft(element, rIntLeft);
+                    }
+                }
+            }
+            StartPracticeButton.Visibility = Visibility.Hidden;
+            CheckPracticeButton.Visibility = Visibility.Visible;
+        }
+
+        private void CheckPracticeClick(object sender, RoutedEventArgs e)
+        {
+            CheckPracticeButton.Visibility = Visibility.Hidden;
+            ReStartPracticeButton.Visibility = Visibility.Visible;
+            if (activePractice == 1)
+            {
+                var score = 0;
+                PracticeCanvas.AllowDrop = false;
+
+                if (384 <= Canvas.GetLeft(PracticeDraggableImage1) && (Canvas.GetLeft(PracticeDraggableImage1) <= 415)
+                    && (163 <= Canvas.GetTop(PracticeDraggableImage1)) && (Canvas.GetTop(PracticeDraggableImage1) <= 200))
+                { 
+                    PracticeDraggableImage1.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else 
+                    PracticeDraggableImage1.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (0 <= Canvas.GetLeft(PracticeDraggableImage2) && (Canvas.GetLeft(PracticeDraggableImage2) <= 40)
+                    && (115 <= Canvas.GetTop(PracticeDraggableImage2)) && (Canvas.GetTop(PracticeDraggableImage2) <= 135))
+                {
+                    PracticeDraggableImage2.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage2.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (398 <= Canvas.GetLeft(PracticeDraggableImage3) && (Canvas.GetLeft(PracticeDraggableImage3) <= 420)
+                    && (65 <= Canvas.GetTop(PracticeDraggableImage3)) && (Canvas.GetTop(PracticeDraggableImage3) <= 120))
+                {
+                    PracticeDraggableImage3.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage3.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (185 <= Canvas.GetLeft(PracticeDraggableImage4) && (Canvas.GetLeft(PracticeDraggableImage4) <= 216)
+
+                    && (129 <= Canvas.GetTop(PracticeDraggableImage4)) && (Canvas.GetTop(PracticeDraggableImage4) <= 159))
+                {
+                    PracticeDraggableImage4.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage4.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (290 <= Canvas.GetLeft(PracticeDraggableImage5) && (Canvas.GetLeft(PracticeDraggableImage5) <= 315)
+                    && (133 <= Canvas.GetTop(PracticeDraggableImage5)) && (Canvas.GetTop(PracticeDraggableImage5) <= 156))
+                {
+                    PracticeDraggableImage5.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage5.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if ( 240 <= Canvas.GetLeft(PracticeDraggableImage6) && (Canvas.GetLeft(PracticeDraggableImage6) <= 270)
+                    && (300 <= Canvas.GetTop(PracticeDraggableImage6)) && (Canvas.GetTop(PracticeDraggableImage6) <= 356)
+                    || (125 <= Canvas.GetLeft(PracticeDraggableImage6) && (Canvas.GetLeft(PracticeDraggableImage6) <= 152)
+                    && (290 <= Canvas.GetTop(PracticeDraggableImage6)) && (Canvas.GetTop(PracticeDraggableImage6) <= 341)))
+                {
+                    PracticeDraggableImage6.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage6.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (240 <= Canvas.GetLeft(PracticeDraggableImage7) && (Canvas.GetLeft(PracticeDraggableImage7) <= 270)
+                    && (300 <= Canvas.GetTop(PracticeDraggableImage7)) && (Canvas.GetTop(PracticeDraggableImage7) <= 356)
+                    || (125 <= Canvas.GetLeft(PracticeDraggableImage7) && (Canvas.GetLeft(PracticeDraggableImage7) <= 152)
+                    && (290 <= Canvas.GetTop(PracticeDraggableImage7)) && (Canvas.GetTop(PracticeDraggableImage7) <= 341)))
+                {
+                    PracticeDraggableImage7.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage7.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (183 <= Canvas.GetLeft(PracticeDraggableImage8) && (Canvas.GetLeft(PracticeDraggableImage8) <= 210)
+                    && (228 <= Canvas.GetTop(PracticeDraggableImage8)) && (Canvas.GetTop(PracticeDraggableImage8) <= 260))
+                {
+                    PracticeDraggableImage8.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage8.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (75 <= Canvas.GetLeft(PracticeDraggableImage9) && (Canvas.GetLeft(PracticeDraggableImage9) <= 105)
+                    && (180 <= Canvas.GetTop(PracticeDraggableImage9)) && (Canvas.GetTop(PracticeDraggableImage9) <= 200))
+                {
+                    PracticeDraggableImage9.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage9.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (320 <= Canvas.GetLeft(PracticeDraggableImage10) && (Canvas.GetLeft(PracticeDraggableImage10) <= 360)
+                    && (25 <= Canvas.GetTop(PracticeDraggableImage10)) && (Canvas.GetTop(PracticeDraggableImage10) <= 60))
+                {
+                    PracticeDraggableImage10.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    PracticeDraggableImage10.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                if (score == 10) totalPracticeScore++;
+            }
+
+
+        }
+
+        private void ReStartPracticeClick(object sender, RoutedEventArgs e)
+        {
+            StartPracticeButton.Visibility = Visibility.Visible;
+            ReStartPracticeButton.Visibility = Visibility.Hidden;
+            if (activePractice == 1)
+            {
+                Practice1Click(sender, e);
+            }
         }
 
         private void TestClick(object sender, RoutedEventArgs e)

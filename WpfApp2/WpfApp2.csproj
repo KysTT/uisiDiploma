@@ -16,6 +16,17 @@
   <ItemGroup>
     <None Remove="close-button.png" />
     <None Remove="form1.png" />
+    <None Remove="Practice1AUC.png" />
+    <None Remove="Practice1GGSN.png" />
+    <None Remove="Practice1HLR.png" />
+    <None Remove="Practice1Icon.png" />
+    <None Remove="Practice1Image.jpg" />
+    <None Remove="Practice1MGW.png" />
+    <None Remove="Practice1MSC.png" />
+    <None Remove="Practice1NodeB.png" />
+    <None Remove="Practice1RNC.png" />
+    <None Remove="Practice1SGSN.png" />
+    <None Remove="Practice1VLR.png" />
     <None Remove="PracticeIcon.png" />
     <None Remove="TestIcon.png" />
     <None Remove="Theory1Icon.png" />
@@ -29,7 +40,6 @@
 
   <ItemGroup>
     <Content Include="bin\Release\netcoreapp3.0\urtisi_logo.ico" />
-    <Content Include="urtisi_logo_95_60_0_0.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,8 +53,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="close-button.png" />
     <Resource Include="form1.png" />
+    <Resource Include="Practice1AUC.png" />
+    <Resource Include="Practice1GGSN.png" />
+    <Resource Include="Practice1HLR.png" />
+    <Resource Include="Practice1Icon.png" />
+    <Resource Include="Practice1Image.jpg" />
+    <Resource Include="Practice1MGW.png" />
+    <Resource Include="Practice1MSC.png" />
+    <Resource Include="Practice1NodeB.png" />
+    <Resource Include="Practice1RNC.png" />
+    <Resource Include="Practice1SGSN.png" />
+    <Resource Include="Practice1VLR.png" />
     <Resource Include="PracticeIcon.png" />
     <Resource Include="TestIcon.png" />
     <Resource Include="Theory1Icon.png" />
