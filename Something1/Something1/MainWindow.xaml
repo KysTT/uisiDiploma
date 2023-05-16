@@ -1,0 +1,510 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Something1"
+        xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" 
+        x:Class="Something1.MainWindow"
+        mc:Ignorable="d"
+        Title="Лабораторная работа" Background="#ececec" 
+        WindowStyle="None" 
+        MinHeight="576" MinWidth="1024"
+        Width="1024" Height="576"
+        SizeChanged="OnSizeChanged"
+        BorderThickness="0"
+        BorderBrush="{x:Null}">
+    
+    <Window.Resources>
+
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="Transparent" Opacity="0.6"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ControlButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="FontFamily" Value="SF Pro Display"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#FF262626"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" Background="White" BorderBrush="#FFC1C1C1" 
+                                BorderThickness="1" CornerRadius="3">
+                            <Grid>
+                                <ContentPresenter ContentSource="Content" 
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0b84ff"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="White"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DockPanel x:Name="Header" Grid.Column="0" 
+                    Height="55" LastChildFill="False" 
+                    MouseLeftButtonDown="OnMouseLeftButtonDown" VerticalAlignment="Top" >
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE9E9E9"/>
+                    <GradientStop Color="#FFD9D9D9" Offset="0.992"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
+
+            <Label x:Name="LabelТема" Foreground="#FF444245" FontFamily="SF Pro Display" 
+                   FontSize="24" FontWeight="Regular" Padding="16,0,0,0" 
+                   VerticalContentAlignment="Center" Background="{x:Null}" Margin="0,0,5,0" 
+                   VerticalAlignment="Center" Content="Сети связи">
+            </Label>
+
+            <Grid x:Name="WindowButtonsGroup" Width="66" RenderTransformOrigin="0.48,0.48" DockPanel.Dock="Right" Height="20" Margin="0,5,5,0" VerticalAlignment="Top">
+
+                <Button x:Name="ButtonClose" Style="{StaticResource TransparentStyle}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" 
+                    Click="ButtonCloseClick" ClickMode="Press" Background="{x:Null}" MouseEnter="OnButtonCloseMouseHover" MouseLeave="OnButtonCloseMouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Grid x:Name="ButtonCloseGrid">
+                        <Ellipse x:Name="ButtonCloseCircle" Height="18" Width="18" Fill="#FFFF605C"/>
+                        <Path x:Name="ButtonClosePath" Data="M29.0375 29.0375C29.3278 28.7465 29.6726 28.5156 30.0523 28.358C30.4319 28.2005 30.839 28.1194 31.25 28.1194C31.661 28.1194 32.0681 28.2005 32.4477 28.358C32.8274 28.5156 33.1722 28.7465 33.4625 29.0375L50 45.5813L66.5375 29.0375C66.828 28.747 67.173 28.5165 67.5526 28.3592C67.9322 28.202 68.3391 28.1211 68.75 28.1211C69.1609 28.1211 69.5678 28.202 69.9474 28.3592C70.327 28.5165 70.672 28.747 70.9625 29.0375C71.2531 29.328 71.4835 29.673 71.6408 30.0526C71.798 30.4322 71.8789 30.8391 71.8789 31.25C71.8789 31.6609 71.798 32.0678 71.6408 32.4474C71.4835 32.827 71.2531 33.172 70.9625 33.4625L54.4187 50L70.9625 66.5375C71.2531 66.828 71.4835 67.173 71.6408 67.5526C71.798 67.9322 71.8789 68.3391 71.8789 68.75C71.8789 69.1609 71.798 69.5678 71.6408 69.9474C71.4835 70.327 71.2531 70.672 70.9625 70.9625C70.672 71.2531 70.327 71.4835 69.9474 71.6408C69.5678 71.798 69.1609 71.8789 68.75 71.8789C68.3391 71.8789 67.9322 71.798 67.5526 71.6408C67.173 71.4835 66.828 71.2531 66.5375 70.9625L50 54.4187L33.4625 70.9625C33.172 71.2531 32.827 71.4835 32.4474 71.6408C32.0678 71.798 31.6609 71.8789 31.25 71.8789C30.8391 71.8789 30.4322 71.798 30.0526 71.6408C29.673 71.4835 29.328 71.2531 29.0375 70.9625C28.747 70.672 28.5165 70.327 28.3592 69.9474C28.202 69.5678 28.1211 69.1609 28.1211 68.75C28.1211 68.3391 28.202 67.9322 28.3592 67.5526C28.5165 67.173 28.747 66.828 29.0375 66.5375L45.5813 50L29.0375 33.4625C28.7465 33.1722 28.5156 32.8274 28.358 32.4477C28.2005 32.0681 28.1194 31.661 28.1194 31.25C28.1194 30.839 28.2005 30.4319 28.358 30.0523C28.5156 29.6726 28.7465 29.3278 29.0375 29.0375Z" Margin="3,3,3,3" Stretch="Fill" Width="9" Height="9" Fill="#FFB24340" Stroke="#FFB24340" Visibility="Hidden" />
+                    </Grid>
+                </Button>
+
+                <Button x:Name="ButtonMaximize" Style="{StaticResource TransparentStyle}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" 
+                    Click="ButtonMaximizeClick" ClickMode="Press" 
+                    Background="{x:Null}" MouseEnter="OnButtonMaximizeMouseHover" MouseLeave="OnButtonMaximizeMouseLeave" 
+                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0">
+                    <Grid x:Name="ButtonMaximizeGrid">
+                        <Ellipse x:Name="ButtonMaximizeCircle" Height="18" Fill="#FFFFBD44" Width="18"/>
+                        <Path x:Name="ButtonMaximizePath" Data="M35.8223 74.3062C35.8217 73.8952 35.9023 73.4881 36.0594 73.1082C36.2164 72.7283 36.4469 72.3832 36.7376 72.0926C37.0282 71.8019 37.3734 71.5714 37.7532 71.4144C38.1331 71.2573 38.5402 71.1767 38.9512 71.1773L71.182 71.1817L71.1776 38.9509C71.1776 38.121 71.5073 37.3252 72.0941 36.7384C72.6808 36.1516 73.4767 35.8219 74.3066 35.8219C75.1364 35.8219 75.9323 36.1516 76.5191 36.7384C77.1058 37.3252 77.4355 38.121 77.4355 38.9509V74.3062C77.436 74.7173 77.3554 75.1244 77.1984 75.5042C77.0413 75.8841 76.8109 76.2292 76.5202 76.5199C76.2296 76.8105 75.8844 77.041 75.5046 77.198C75.1247 77.3551 74.7176 77.4357 74.3066 77.4352L38.9512 77.4352C38.5402 77.4357 38.1331 77.3551 37.7532 77.198C37.3733 77.041 37.0282 76.8105 36.7376 76.5199C36.4469 76.2292 36.2164 75.8841 36.0594 75.5042C35.9023 75.1244 35.8217 74.7173 35.8223 74.3062ZM25.693 64.1769C26.104 64.1774 26.5111 64.0969 26.891 63.9398C27.2708 63.7827 27.616 63.5523 27.9066 63.2616C28.1973 62.971 28.4277 62.6258 28.5848 62.246C28.7419 61.8661 28.8224 61.459 28.8219 61.048L28.8175 28.8172L61.0483 28.8216C61.8781 28.8216 62.674 28.4919 63.2608 27.9051C63.8476 27.3183 64.1772 26.5225 64.1773 25.6926C64.1773 24.8628 63.8476 24.0669 63.2608 23.4801C62.674 22.8933 61.8782 22.5637 61.0483 22.5637L25.693 22.5637C25.2819 22.5632 24.8748 22.6437 24.495 22.8008C24.1151 22.9579 23.77 23.1883 23.4793 23.479C23.1887 23.7696 22.9582 24.1148 22.8011 24.4946C22.6441 24.8745 22.5635 25.2816 22.564 25.6926V61.048C22.5635 61.459 22.6441 61.8661 22.8011 62.246C22.9582 62.6258 23.1887 62.971 23.4793 63.2616C23.77 63.5523 24.1151 63.7827 24.495 63.9398C24.8748 64.0969 25.2819 64.1774 25.693 64.1769Z" StrokeThickness="1" Margin="3,3,3,3" Stretch="Fill" Width="9" Height="9" Fill="#FFB2842F" Stroke="#FFB2842F" Visibility="Hidden" />
+                    </Grid>
+                </Button>
+
+                <Button x:Name="ButtonMinimize" Style="{StaticResource TransparentStyle}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" 
+                    Click="ButtonMinimizeClick" ClickMode="Press" 
+                    Background="{x:Null}" MouseEnter="OnButtonMinimizeMouseHover" MouseLeave="OnButtonMinimizeMouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,48,0">
+                    <Grid x:Name="ButtonMinimizeGrid" UseLayoutRounding="True">
+                        <Ellipse x:Name="ButtonMinimizeCircle" Height="18" Width="18" Fill="#FF00CA4E"/>
+                        <Path x:Name="ButtonMinimizePath" Data="M4 50.125C4 49.2962 4.32924 48.5013 4.91529 47.9153C5.50134 47.3292 6.2962 47 7.125 47H88.375C89.2038 47 89.9987 47.3292 90.5847 47.9153C91.1708 48.5013 91.5 49.2962 91.5 50.125C91.5 50.9538 91.1708 51.7487 90.5847 52.3347C89.9987 52.9208 89.2038 53.25 88.375 53.25H7.125C6.2962 53.25 5.50134 52.9208 4.91529 52.3347C4.32924 51.7487 4 50.9538 4 50.125Z" Stretch="Fill" Height="2.5" Width="9" Fill="#FF007D30" Stroke="#FF007D30" StrokeThickness="0" Visibility="Hidden" />
+                    </Grid>
+                </Button>
+
+            </Grid>
+
+            <Path x:Name="HeaderDivider" Data="M50,890 L250,890" Fill="#FF99999C" Stroke="#FF99999C" Stretch="Fill" DockPanel.Dock="Bottom" Margin="-189,0,-72,0"/>
+
+            <!--// Меню навигации по работе //-->
+                <Menu x:Name="NavMenu" 
+                  Width="470" Height="50" 
+                  VerticalAlignment="Center" HorizontalAlignment="Left" 
+                  Background="Transparent" Margin="5,0,0,0">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                
+                    <!--// Меню навигации по теории //-->
+                    <MenuItem x:Name="TheoryMenu"
+                          Width="150" Height="50" Header="Теория" 
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                    <MenuItem.Icon>
+                        <Image Source="/TheoryIcon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                    </MenuItem.Icon>
+                    
+                        <!--// Элемент меню 1//-->
+                    <MenuItem x:Name="Theory1"
+                              HorizontalContentAlignment="Center" 
+                              Height="50" Header="Поколения сетей"
+                              Template="{StaticResource Item_Template}" Click="Theory1Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Theory1Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    
+                        <!--// Элемент меню 2//-->
+                    <MenuItem x:Name="Theory2"
+                              HorizontalContentAlignment="Center" 
+                              Height="50" Header="Оборудование"
+                              Template="{StaticResource Item_Template}" Click="Theory2Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Theory2Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    
+                        <!--// Элемент меню 3//-->
+                    <MenuItem x:Name="Theory3"
+                              HorizontalContentAlignment="Center" 
+                              Height="50" Header="Антенны"
+                              Template="{StaticResource Item_Template}" Click="Theory3Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Theory3Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    
+                        <!--// Элемент меню 4//-->
+                    <MenuItem x:Name="Theory4"
+                              HorizontalContentAlignment="Center" 
+                              Height="50" Header="Распространение сигнала"
+                              Template="{StaticResource Item_Template}" Click="Theory4Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Theory4Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem x:Name="PracticeMenu"
+                          Width="150" Height="50" 
+                          Template="{StaticResource Menu_SubMenu_Template}" Header="Практика" 
+                          Margin="10,0,0,0">
+                    <MenuItem.Icon>
+                        <Image Source="/PracticeIcon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                    </MenuItem.Icon>
+
+                    <MenuItem x:Name="Practice1"
+                              HorizontalContentAlignment="Center"
+                              Height="50" Header="Задание 1"
+                              Template="{StaticResource Item_Template}" Click="Practice1Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Practice1Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                </MenuItem>
+
+                <MenuItem x:Name="TestMenu"
+                          Width="150" Height="50" 
+                          Template="{StaticResource Menu_SubMenu_Template}" Header="Тест" 
+                          Margin="10,0,0,0" Click="TestClick">
+                    <MenuItem.Icon>
+                        <Image Source="/TestIcon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+            </Menu>
+
+        </DockPanel>
+
+        <Grid x:Name="ContentTheory1" Margin="16,71,16,16">
+            <Wpf:WebView2 x:Name="TheoryView" DockPanel.Dock="Top" Visibility="Hidden"/>
+        </Grid>
+
+        <DockPanel x:Name="ContentTest" LastChildFill="False" Margin="16,71,16,16" Visibility="Hidden">
+
+            <Label x:Name="scoreText" FontSize="18" Content="" VerticalAlignment="Top" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
+
+            <TextBlock x:Name="txtQuestion" TextAlignment="Center" Padding="3" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,76,0,0"><Run Text=""/></TextBlock>
+
+            <Image x:Name="qImage" Source="/form1.png" Stretch="Uniform" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" MaxWidth="480" MaxHeight="320" />
+
+            <Button Click="CheckAnswer" x:Name="ans1" 
+                    Content="Ответ 1" Tag="0" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    DockPanel.Dock="Top" Margin="0,33,240,0" Width="130" Height="26" Style="{StaticResource ControlButtonStyle}"/>
+
+            <Button Click="CheckAnswer" x:Name="ans2" 
+                    Content="Ответ 2" Tag="0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    DockPanel.Dock="Top" Margin="240,-26,0,0" Width="130" Height="26" Style="{StaticResource ControlButtonStyle}"/>
+
+            <Button Click="CheckAnswer" x:Name="ans3" 
+                    Content="Ответ 3" Tag="0" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    DockPanel.Dock="Top" Margin="0,28,240,0" Width="130" Height="26" Style="{StaticResource ControlButtonStyle}"/>
+
+            <Button Click="CheckAnswer" x:Name="ans4" 
+                    Content="Ответ 4" Tag="0" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    DockPanel.Dock="Top" Margin="240,-26,0,0" Width="130" Height="26" Style="{StaticResource ControlButtonStyle}"/>
+
+            <Button Click="ButtonStartTestClick" x:Name="ButtonStartTest" 
+                    Tag="0" Command="{Binding ElementName=TestPart1Canvas, Mode=OneWay}" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" DockPanel.Dock="Top" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" Content="Начать тест" 
+                    Height="26" Margin="0,-80,0,0" Width="130" Style="{StaticResource ControlButtonStyle}"/>
+
+            <Button Click="ButtonEndTestClick" x:Name="ButtonEndTest" 
+                    Content="Завершить тест" Tag="0" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    DockPanel.Dock="Top" Width="130" Height="26" Style="{StaticResource ControlButtonStyle}" Margin="0,26,0,0"/>
+
+        </DockPanel>
+
+        <DockPanel x:Name="ContentPractice" LastChildFill="False" Margin="16,71,16,16" Visibility="Hidden">
+
+            <Grid x:Name="PracticeGrid" 
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  DockPanel.Dock="Top">
+
+                <DockPanel x:Name="VariantPicker" Height="455" Width="490">
+                    <Label Content="Введите номер варианта: " FontSize="28" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="VariantBox" 
+                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                             Width="32" Height="32" Margin="-104,0,0,0" Text="" 
+                             FontSize="28" HorizontalContentAlignment="Center" 
+                             VerticalContentAlignment="Center" KeyDown="VariantBox_KeyDown"/>
+                </DockPanel>
+
+                <Button x:Name="ConfirmVariantButton" Content="Подтвердить"
+                    Width="130" Height="26" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Style="{StaticResource ControlButtonStyle}" 
+                    Click="ConfirmVariant" Margin="0,0,0,-30" />
+
+                <Button x:Name="StartPracticeButton" Content="Начать практику"
+                    Width="130" Height="26" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Style="{StaticResource ControlButtonStyle}" 
+                    Click="StartPracticeClick" Margin="0,0,0,-30" Visibility="Hidden" />
+                <Button x:Name="StartNextPracticeButton" Content="Следующее задание"
+                    Width="160" Height="26" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Style="{StaticResource ControlButtonStyle}" 
+                    Click="ContinuePracticeClick" Margin="0,0,0,-30" Visibility="Hidden" />
+
+                <Button x:Name="ReStartPracticeButton" Content="Начать заново"
+                    Width="130" Height="26" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Style="{StaticResource ControlButtonStyle}" 
+                    Click="ReStartPracticeClick" Margin="0,0,0,-30" Visibility="Hidden" />
+
+                <Button x:Name="CheckPracticeButton" Content="Проверить"
+                    Width="130" Height="26" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Style="{StaticResource ControlButtonStyle}" 
+                    Click="CheckPracticeClick" Margin="0,0,0,-30" Visibility="Hidden" />
+
+                <Image x:Name="PracticeImage" 
+                       MaxHeight="455" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <Canvas x:Name="PracticeCanvas"  AllowDrop="True"
+                        DragOver="PracticeImage_Dragging" 
+                        Background="Transparent"
+                        Height="{Binding Height, ElementName=PracticeGrid}" 
+                        Width="{Binding Width, ElementName=PracticeGrid}" Visibility="Hidden">
+
+                    <Border x:Name="PracticeDraggableImage1"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage1Grid">
+                            <Image x:Name="PracticeImage1"/>
+                            <Label x:Name="PracticeDraggableImage1Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage2"
+                            MaxHeight="80"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage2Grid">
+                            <Image x:Name="PracticeImage2"/>
+                            <Label x:Name="PracticeDraggableImage2Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage3"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage3Grid">
+                            <Image x:Name="PracticeImage3"/>
+                            <Label x:Name="PracticeDraggableImage3Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage4"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage4Grid">
+                            <Image x:Name="PracticeImage4"/>
+                            <Label x:Name="PracticeDraggableImage4Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage5"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage5Grid">
+                            <Image x:Name="PracticeImage5"/>
+                            <Label x:Name="PracticeDraggableImage5Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage6"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage6Grid">
+                            <Image x:Name="PracticeImage6"/>
+                            <Label x:Name="PracticeDraggableImage6Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage7"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage7Grid">
+                            <Image x:Name="PracticeImage7"/>
+                            <Label x:Name="PracticeDraggableImage7Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage8"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage8Grid">
+                            <Image x:Name="PracticeImage8"/>
+                            <Label x:Name="PracticeDraggableImage8Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage9"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage9Grid">
+                            <Image x:Name="PracticeImage9"/>
+                            <Label x:Name="PracticeDraggableImage9Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="PracticeDraggableImage10"
+                            MouseMove="PracticeDraggableImage_MouseMove"
+                            MaxHeight="80"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" 
+                            BorderBrush="Transparent" BorderThickness="5" Visibility="Hidden">
+                        <Grid x:Name="PracticeDraggableImage10Grid">
+                            <Image x:Name="PracticeImage10"/>
+                            <Label x:Name="PracticeDraggableImage10Label" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Margin="0,0,0,-20"/>
+                        </Grid>
+                    </Border>
+
+                </Canvas>
+
+                <ComboBox x:Name="PracticeSelector1"
+                          Width="80" Height="26" DockPanel.Dock="Top" 
+                          HorizontalAlignment="Left" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector2"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Left" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector3"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Left" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector4"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Left" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector5"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Right" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector6"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Right" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector7"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Right" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector8"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Right" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector9"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Right" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+                <ComboBox x:Name="PracticeSelector10"
+                          Width="80" Height="26" 
+                          HorizontalAlignment="Right" VerticalAlignment="Center" 
+                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+
+</Window>
