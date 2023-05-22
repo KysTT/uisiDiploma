@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -58,6 +60,7 @@ namespace Something1
     public partial class MainWindow : Window
     {
 
+
         // вариант студента, необходим для певой практической задачи
         string studentsVariant = "";
 
@@ -66,6 +69,8 @@ namespace Something1
         
         // activePractice - номер текущего практического задания
         int activePractice = 0;
+
+        ComboBox prevSelected = new();
 
         // totalPracticeScore - количество правльно выполненных практических заданий (п.з.)
         // если totalPracticeScore == n, где n - общее число п.з. , тогда открывается тест
@@ -82,6 +87,19 @@ namespace Something1
         public MainWindow()
         {
             InitializeComponent();
+
+            foreach (UIElement element in PracticeCanvas.Children)
+            {
+
+                if (element is ComboBox)
+                {
+                    ComboBox myElemt = element as ComboBox;
+                    myElemt.Items.Add("FTCW OD CABLE");
+                    myElemt.Items.Add("FOSC Flexi Optical");
+                    myElemt.Items.Add("7/16 connector");
+                }
+
+            }
         }
 
         // Метод для перетаскивания окна программы мышкой (метод присвоен заголовку окна (Header))
@@ -92,6 +110,7 @@ namespace Something1
 
             DragMove();
         }
+
 
         // Метод для изменения ширины и высоты окна
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -247,6 +266,122 @@ namespace Something1
             }
         }
 
+        private void PracticeSelectorSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (prevSelected == sender as ComboBox)
+                prevSelected = new();
+
+            ComboBox nowSelected = sender as ComboBox;
+            Line line = new Line();
+            Ellipse ellipse1 = new Ellipse();
+            Ellipse ellipse2 = new Ellipse();
+            
+            ellipse1.Height = ellipse1.Width = 12;
+            ellipse2.Height = ellipse2.Width = 12;
+
+            line.StrokeThickness = 5;
+
+            if (nowSelected.SelectedValue == null)
+                return;
+
+            if (nowSelected.Tag is null)
+                nowSelected.Tag = "selected";
+
+            if (prevSelected.Name == "")
+                prevSelected = sender as ComboBox;
+            else
+            {
+                line.X1 = Canvas.GetLeft(prevSelected) + 10;
+                line.Y1 = Canvas.GetTop(prevSelected) + 10;
+                line.X2 = Canvas.GetLeft(nowSelected) + 10;
+                line.Y2 = Canvas.GetTop(nowSelected) + 10;
+
+                if (prevSelected.Tag.ToString() == "selected" && nowSelected.Tag.ToString() == "selected"
+                    && prevSelected.SelectedValue.ToString() == "FTCW OD CABLE" && nowSelected.SelectedValue.ToString() == "FTCW OD CABLE")
+                {
+                    line.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD800"));
+                    ellipse1.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD800"));
+                    ellipse2.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD800"));
+
+                    prevSelected.Tag = "connected to " + nowSelected.Name;
+                    nowSelected.Tag = "connected to " + prevSelected.Name;
+
+                    //prevSelected.Visibility = Visibility.Collapsed;
+                    //nowSelected.Visibility = Visibility.Collapsed;
+
+                    PracticeCanvas.Children.Add(line);
+                    
+                    PracticeCanvas.Children.Add(ellipse1);
+                    PracticeCanvas.Children.Add(ellipse2);
+                    Canvas.SetLeft(ellipse1, Canvas.GetLeft(prevSelected) + 5);
+                    Canvas.SetTop(ellipse1, Canvas.GetTop(prevSelected) + 5);
+
+                    Canvas.SetLeft(ellipse2, Canvas.GetLeft(nowSelected) + 5);
+                    Canvas.SetTop(ellipse2, Canvas.GetTop(nowSelected) + 5);
+
+                    prevSelected = new();
+                }
+
+                else
+                    if (prevSelected.Tag.ToString() == "selected" && nowSelected.Tag.ToString() == "selected"
+                        && prevSelected.SelectedValue.ToString() == "FOSC Flexi Optical" && nowSelected.SelectedValue.ToString() == "FOSC Flexi Optical")
+                {
+                    line.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B200FF"));
+                    ellipse1.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B200FF"));
+                    ellipse2.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B200FF"));
+
+                    prevSelected.Tag = "connected to " + nowSelected.Name;
+                    nowSelected.Tag = "connected to " + prevSelected.Name;
+
+                    //prevSelected.Visibility = Visibility.Collapsed;
+                    //nowSelected.Visibility = Visibility.Collapsed;
+
+                    PracticeCanvas.Children.Add(line);
+
+                    PracticeCanvas.Children.Add(ellipse1);
+                    PracticeCanvas.Children.Add(ellipse2);
+                    Canvas.SetLeft(ellipse1, Canvas.GetLeft(prevSelected) + 5);
+                    Canvas.SetTop(ellipse1, Canvas.GetTop(prevSelected) + 5);
+
+                    Canvas.SetLeft(ellipse2, Canvas.GetLeft(nowSelected) + 5);
+                    Canvas.SetTop(ellipse2, Canvas.GetTop(nowSelected) + 5);
+
+                    prevSelected = new();
+                }
+
+                else
+                    if (prevSelected.Tag.ToString() == "selected" && nowSelected.Tag.ToString() == "selected"
+                        && prevSelected.SelectedValue.ToString() == "7/16 connector" && nowSelected.SelectedValue.ToString() == "7/16 connector")
+                {
+                    line.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0026FF"));
+                    ellipse1.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0026FF"));
+                    ellipse2.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0026FF"));
+
+                    prevSelected.Tag = "connected to " + nowSelected.Name;
+                    nowSelected.Tag = "connected to " + prevSelected.Name;
+
+                    //prevSelected.Visibility = Visibility.Collapsed;
+                    //nowSelected.Visibility = Visibility.Collapsed;
+
+                    PracticeCanvas.Children.Add(line);
+
+                    PracticeCanvas.Children.Add(ellipse1);
+                    PracticeCanvas.Children.Add(ellipse2);
+                    Canvas.SetLeft(ellipse1, Canvas.GetLeft(prevSelected) + 5);
+                    Canvas.SetTop(ellipse1, Canvas.GetTop(prevSelected) + 5);
+
+                    Canvas.SetLeft(ellipse2, Canvas.GetLeft(nowSelected) + 5);
+                    Canvas.SetTop(ellipse2, Canvas.GetTop(nowSelected) + 5);
+
+                    prevSelected = new();
+                }
+                else 
+                { 
+                    prevSelected = nowSelected;
+                }
+            }
+        }
+
         // Метод который вызывается при наведении мыши на объект, которому присвоен этот метод
         private void PracticeDraggableImage_MouseMove(object sender, MouseEventArgs e)
         {
@@ -298,22 +433,39 @@ namespace Something1
         // Метод вызываемый нажатием по элементу меню "Практика1"
         private void Practice1Click(object sender, RoutedEventArgs e)
         {
+            if (PracticeCanvas.Visibility == Visibility.Visible)
+                PracticeCanvas.Visibility = Visibility.Hidden;
+
+            if (PracticeImage.Visibility == Visibility.Visible)
+                PracticeImage.Visibility = Visibility.Hidden;
+
+            if (StartPracticeButton.Visibility == Visibility.Visible)
+                StartPracticeButton.Visibility = Visibility.Hidden;
+
+            if (CheckPracticeButton.Visibility == Visibility.Visible)
+                CheckPracticeButton.Visibility = Visibility.Hidden;
+
+            if (studentsVariant == "") 
+            { 
+            VariantPicker.Visibility = Visibility.Visible;
+            ConfirmVariantButton.Visibility = Visibility.Visible;
+            }
+
             // проверяем кто вызвал текущий метод
             // если это кнопка (в будущем кнопка перезапуска), тогда
             if (sender is Button)
-                // показываем содержимое панели с п.з.
+            // показываем содержимое панели с п.з.
+            {
                 ContentPractice.Visibility = Visibility.Visible;
+                StartPracticeButton.Visibility = Visibility.Visible;
+            }
             else
             {
                 // если панель с п.з. скрыта - показываем
                 if (ContentPractice.Visibility == Visibility.Hidden)
                     ContentPractice.Visibility = Visibility.Visible;
 
-                // иначе скрываем
-                else
-                    ContentPractice.Visibility = Visibility.Hidden;
             }
-
             // переменной activePractice задаем значение 1 
             // что бы понимать, что сейчас решается 1-ое п.з.
 
@@ -324,6 +476,38 @@ namespace Something1
 
             if (TheoryView.Visibility == Visibility.Visible)
                 TheoryView.Visibility = Visibility.Hidden;
+        }
+
+        // Метод вызываемый нажатием по элементу меню "Практика2"
+        private void Practice2Click(object sender, RoutedEventArgs e)
+        {
+            VariantPicker.Visibility = Visibility.Hidden;
+            ConfirmVariantButton.Visibility = Visibility.Hidden;
+            
+            // проверяем кто вызвал текущий метод
+            // если это кнопка (в будущем кнопка перезапуска), тогда
+            if (sender is Button)
+                // показываем содержимое панели с п.з.
+                ContentPractice.Visibility = Visibility.Visible;
+            else
+            {
+                // если панель с п.з. скрыта - показываем
+                if (ContentPractice.Visibility == Visibility.Hidden)
+                    ContentPractice.Visibility = Visibility.Visible;
+            }
+            // переменной activePractice задаем значение 1 
+            // что бы понимать, что сейчас решается 1-ое п.з.
+
+            activePractice = 2;
+
+            // Если браузер с теорией отображен на экране, тогда
+            // его следует скрыть
+
+            if (TheoryView.Visibility == Visibility.Visible)
+                TheoryView.Visibility = Visibility.Hidden;
+
+            if (StartPracticeButton.Visibility == Visibility.Hidden)
+                StartPracticeButton.Visibility = Visibility.Visible;
         }
 
         List<int> GetRandomPosition(Random r)
@@ -514,6 +698,33 @@ namespace Something1
             }
         }
 
+        private void ShowThingsPractice2()
+        {
+            PracticeImage.Source = new BitmapImage(new Uri("pack://application:,,,/pracScheme.png"));
+
+            PracticeImage.Visibility = Visibility.Visible;
+            PracticeCanvas.Visibility = Visibility.Visible;
+
+            foreach (UIElement element in PracticeCanvas.Children)
+            {
+                if (element is ComboBox)
+                {
+                    element.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void HideThingsAfterPractice1()
+        {
+            foreach (UIElement element in PracticeCanvas.Children)
+            {
+                if (element is Border)
+                {
+                    element.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
         // Метод нажатия по кнопке "начать практику"
         private void StartPracticeClick(object sender, RoutedEventArgs e)
         {
@@ -523,7 +734,8 @@ namespace Something1
 
             if (activePractice == 2)
             {
-
+                ShowThingsPractice2();
+                HideThingsAfterPractice1();
             }
 
             // так как уже начали выполнять п.з. скрываем кнопку старта
@@ -864,6 +1076,487 @@ namespace Something1
             }
         }
 
+        private void CalculatePractice2Score()
+        {
+            // вот эта абоминация снизу - 
+            // страшная сказка на ночь
+
+            Ellipse RWellipse1 = new Ellipse();
+            Ellipse RWellipse2 = new Ellipse();
+            Ellipse RWellipse3 = new Ellipse();
+            Ellipse RWellipse4 = new Ellipse();
+            Ellipse RWellipse5 = new Ellipse();
+            Ellipse RWellipse6 = new Ellipse();
+            Ellipse RWellipse7 = new Ellipse();
+            Ellipse RWellipse8 = new Ellipse();
+            Ellipse RWellipse9 = new Ellipse();
+            Ellipse RWellipseA = new Ellipse();
+            Ellipse RWellipseB = new Ellipse();
+            Ellipse RWellipseC = new Ellipse();
+            Ellipse RWellipseD = new Ellipse();
+            Ellipse RWellipseE = new Ellipse();
+
+            if (true) 
+            { 
+
+            RWellipse1.Width = RWellipse1.Height = RWellipse2.Width = RWellipse2.Height =
+                RWellipse3.Width = RWellipse3.Height = RWellipse4.Width = RWellipse4.Height =
+                RWellipse5.Width = RWellipse5.Height = RWellipse6.Width = RWellipse6.Height =
+                RWellipse7.Width = RWellipse7.Height = RWellipse8.Width = RWellipse8.Height =
+                RWellipse9.Width = RWellipse9.Height = RWellipseA.Width = RWellipseA.Height =
+                RWellipseB.Width = RWellipseB.Height = RWellipseC.Width = RWellipseC.Height =
+                RWellipseD.Width = RWellipseD.Height = RWellipseE.Width = RWellipseE.Height = 20;
+
+                RWellipse1.StrokeThickness = RWellipse2.StrokeThickness = RWellipse3.StrokeThickness = RWellipse4.StrokeThickness =
+                    RWellipse5.StrokeThickness = RWellipse6.StrokeThickness = RWellipse7.StrokeThickness = RWellipse8.StrokeThickness =
+                    RWellipse9.StrokeThickness = RWellipseA.StrokeThickness = RWellipseB.StrokeThickness = RWellipseC.StrokeThickness =
+                    RWellipseD.StrokeThickness = RWellipseE.StrokeThickness = 2;
+
+                PracticeCanvas.Children.Add(RWellipse1);
+            PracticeCanvas.Children.Add(RWellipse2);
+            PracticeCanvas.Children.Add(RWellipse3);
+            PracticeCanvas.Children.Add(RWellipse4);
+            PracticeCanvas.Children.Add(RWellipse5);
+            PracticeCanvas.Children.Add(RWellipse6);
+            PracticeCanvas.Children.Add(RWellipse7);
+            PracticeCanvas.Children.Add(RWellipse8);
+            PracticeCanvas.Children.Add(RWellipse9);
+            PracticeCanvas.Children.Add(RWellipseA);
+            PracticeCanvas.Children.Add(RWellipseB);
+            PracticeCanvas.Children.Add(RWellipseC);
+            PracticeCanvas.Children.Add(RWellipseD);
+            PracticeCanvas.Children.Add(RWellipseE);
+
+            Canvas.SetLeft(RWellipse1, Canvas.GetLeft(PracticeSelector1) );
+            Canvas.SetLeft(RWellipse2, Canvas.GetLeft(PracticeSelector2));
+            Canvas.SetLeft(RWellipse3, Canvas.GetLeft(PracticeSelector3));
+            Canvas.SetLeft(RWellipse4, Canvas.GetLeft(PracticeSelector4));
+            Canvas.SetLeft(RWellipse5, Canvas.GetLeft(PracticeSelector5));
+            Canvas.SetLeft(RWellipse6, Canvas.GetLeft(PracticeSelector6));
+            Canvas.SetLeft(RWellipse7, Canvas.GetLeft(PracticeSelector7));
+            Canvas.SetLeft(RWellipse8, Canvas.GetLeft(PracticeSelector8));
+            Canvas.SetLeft(RWellipse9, Canvas.GetLeft(PracticeSelector9));
+            Canvas.SetLeft(RWellipseA, Canvas.GetLeft(PracticeSelectorA));
+            Canvas.SetLeft(RWellipseB, Canvas.GetLeft(PracticeSelectorB));
+            Canvas.SetLeft(RWellipseC, Canvas.GetLeft(PracticeSelectorC));
+            Canvas.SetLeft(RWellipseD, Canvas.GetLeft(PracticeSelectorD));
+            Canvas.SetLeft(RWellipseE, Canvas.GetLeft(PracticeSelectorE));
+
+            Canvas.SetTop(RWellipse1, Canvas.GetTop(PracticeSelector1));
+            Canvas.SetTop(RWellipse2, Canvas.GetTop(PracticeSelector2));
+            Canvas.SetTop(RWellipse3, Canvas.GetTop(PracticeSelector3));
+            Canvas.SetTop(RWellipse4, Canvas.GetTop(PracticeSelector4));
+            Canvas.SetTop(RWellipse5, Canvas.GetTop(PracticeSelector5));
+            Canvas.SetTop(RWellipse6, Canvas.GetTop(PracticeSelector6));
+            Canvas.SetTop(RWellipse7, Canvas.GetTop(PracticeSelector7));
+            Canvas.SetTop(RWellipse8, Canvas.GetTop(PracticeSelector8));
+            Canvas.SetTop(RWellipse9, Canvas.GetTop(PracticeSelector9));
+            Canvas.SetTop(RWellipseA, Canvas.GetTop(PracticeSelectorA));
+            Canvas.SetTop(RWellipseB, Canvas.GetTop(PracticeSelectorB));
+            Canvas.SetTop(RWellipseC, Canvas.GetTop(PracticeSelectorC));
+            Canvas.SetTop(RWellipseD, Canvas.GetTop(PracticeSelectorD));
+            Canvas.SetTop(RWellipseE, Canvas.GetTop(PracticeSelectorE));
+            }
+            
+            int score = 0;
+
+            if (PracticeSelector1.Tag != null) 
+            { 
+                if ( PracticeSelector1.Text == "FTCW OD CABLE" && PracticeSelector1.Tag.ToString() == "connected to PracticeSelector2")
+                {
+
+                    RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    if (PracticeSelector1.Text == "FTCW OD CABLE" && PracticeSelector1.Tag.ToString() == "connected to PracticeSelector4")
+                    {
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                        score++;
+                    }
+                else
+                {
+                    RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector3")
+                        RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector5")
+                        RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector7")
+                        RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelectorA")
+                        RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelectorB")
+                        RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelectorD")
+                        RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector1.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+
+            if (PracticeSelector3.Tag != null)
+            {
+                if (PracticeSelector3.Text == "FTCW OD CABLE" && PracticeSelector3.Tag.ToString() == "connected to PracticeSelector2")
+                {
+                    RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                    if (PracticeSelector3.Text == "FTCW OD CABLE" && PracticeSelector3.Tag.ToString() == "connected to PracticeSelector4")
+                {
+                    RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                {
+                    RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector1")
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector5")
+                        RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector7")
+                        RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelectorA")
+                        RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelectorB")
+                        RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelectorD")
+                        RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector3.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+
+            if (PracticeSelectorA.Tag != null) 
+            {
+                if (PracticeSelectorA.Text == "FOSC Flexi Optical" && PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector9") 
+                {
+                    RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                {
+                    RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector1")
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector3")
+                        RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector5")
+                        RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector7")
+                        RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelectorB")
+                        RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelectorD")
+                        RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorA.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+            
+            if (PracticeSelector5.Tag != null)
+            {
+                if (PracticeSelector5.Text == "7/16 connector" && PracticeSelector5.Tag.ToString() == "connected to PracticeSelector6")
+                {
+                    RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                {
+                    RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector1")
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector3")
+                        RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector7")
+                        RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelectorA")
+                        RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelectorB")
+                        RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelectorD")
+                        RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector5.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+            
+            if (PracticeSelector7.Tag != null)
+            {
+                if (PracticeSelector7.Text == "7/16 connector" && PracticeSelector7.Tag.ToString() == "connected to PracticeSelector8")
+                {
+                    RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                {
+                    RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector1")
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector3")
+                        RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector5")
+                        RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelectorA")
+                        RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelectorB")
+                        RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelectorD")
+                        RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelector7.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+
+            if (PracticeSelectorB.Tag != null)
+            {
+                if (PracticeSelectorB.Text == "7/16 connector" && PracticeSelectorB.Tag.ToString() == "connected to PracticeSelectorC")
+                {
+                    RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++;
+                }
+                else
+                {
+                    RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector1")
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector3")
+                        RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector5")
+                        RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector7")
+                        RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelectorA")
+                        RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelectorD")
+                        RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorB.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+
+            if (PracticeSelectorD.Tag != null)
+            {
+                if (PracticeSelectorD.Text == "7/16 connector" && PracticeSelectorD.Tag.ToString() == "connected to PracticeSelectorE")
+                {
+                    RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00CA4E"));
+                    score++; 
+                }
+                else
+                {
+                    RWellipseD.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector1")
+                        RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector2")
+                        RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector3")
+                        RWellipse3.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector4")
+                        RWellipse4.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector5")
+                        RWellipse5.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector6")
+                        RWellipse6.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector7")
+                        RWellipse7.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector8")
+                        RWellipse8.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelector9")
+                        RWellipse9.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelectorA")
+                        RWellipseA.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelectorB")
+                        RWellipseB.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelectorC")
+                        RWellipseC.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+
+                    if (PracticeSelectorD.Tag.ToString() == "connected to PracticeSelectorE")
+                        RWellipseE.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
+                }
+            }
+
+            if (score == 7)
+            {
+                totalPracticeScore++;
+                StartNextPracticeButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ReStartPracticeButton.Visibility = Visibility.Visible;
+            }
+        }
+
         // метод при нажатии на кнопку "проверить"
         private void CheckPracticeClick(object sender, RoutedEventArgs e)
         {
@@ -875,16 +1568,62 @@ namespace Something1
                 CalculatePractice1TotalScore();
             if (activePractice == 2)
             {
-
+                CalculatePractice2Score();
             }
         }
 
         private void ContinuePracticeClick(object sender, RoutedEventArgs e)
         {
             activePractice++;
+
+            if (activePractice == 2) 
+            {
+                Practice2Click(sender, e);
+            }
             
             StartNextPracticeButton.Visibility = Visibility.Hidden;
             PracticeCanvas.Visibility = Visibility.Hidden;
+            PracticeImage.Visibility = Visibility.Hidden;
+        }
+
+        private void RestartPractice2()
+        {
+            List<Line> toRemoveLines = new List<Line>();
+            List<Ellipse> toRemoveCircles = new List<Ellipse>();
+
+            foreach (var element in PracticeCanvas.Children)
+            {
+
+                if (element is Line)
+                {
+                    toRemoveLines.Add((Line)element);
+                }
+
+                if (element is Ellipse)
+                {
+                    toRemoveCircles.Add((Ellipse)element);
+                }
+            }
+
+            for (int i = 0; i < toRemoveLines.Count; i++)
+            {
+                PracticeCanvas.Children.Remove(toRemoveLines[i]);
+            }
+
+            for (int i = 0; i < toRemoveCircles.Count; i++)
+            {
+                PracticeCanvas.Children.Remove(toRemoveCircles[i]);
+            }
+
+            foreach (var element in PracticeCanvas.Children)
+            {
+                if (element is ComboBox) 
+                { 
+                    var ccb = (ComboBox)element;
+                    ccb.SelectedItem = null;
+                    ccb.Tag = null;
+                }
+            }
         }
 
         // метод для перезапуска п.з. 
@@ -903,6 +1642,11 @@ namespace Something1
             if (activePractice == 1)
             {
                 Practice1Click(sender, e);
+            }
+
+            if (activePractice == 2)
+            {
+                RestartPractice2();
             }
         }
 
@@ -1217,6 +1961,7 @@ namespace Something1
             PracticeMenu.Visibility = Visibility.Hidden;
             ContentTheory1.Visibility = Visibility.Hidden;
         }
+
 
         // метод который вызывается нажатием кноки "начать тест"
 

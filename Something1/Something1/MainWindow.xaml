@@ -14,7 +14,7 @@
         SizeChanged="OnSizeChanged"
         BorderThickness="0"
         BorderBrush="{x:Null}">
-    
+
     <Window.Resources>
 
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
@@ -76,6 +76,152 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+            <Grid>
+                <Border 
+                  Grid.Column="0"
+                  CornerRadius="0" 
+                  Margin="0,0,0,0" 
+                  Background="#A36D2828" 
+                  BorderBrush="#0097A0A5"
+                  BorderThickness="0,0,1,0" />
+            </Grid>
+            <!--<ControlTemplate.Triggers>
+            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="#808080" />
+            </Trigger>
+            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                <Setter Property="Foreground" Value="#888888"/>
+                <Setter TargetName="Arrow" Property="Fill" Value="#888888" />
+            </Trigger>
+        </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+            <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+
+        <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="MinWidth" Value="20"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <ToggleButton 
+                            Name="ToggleButton" 
+                            Template="{StaticResource ComboBoxToggleButton}" 
+                            Grid.Column="2" 
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Margin="3,3,23,3"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" />
+                            <TextBox x:Name="PART_EditableTextBox"
+                            Style="{x:Null}" 
+                            Template="{StaticResource ComboBoxTextBox}" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            Margin="3,3,23,3"
+                            Focusable="True" 
+                            Background="#FF3F3F3F"
+                            Foreground="Green"
+                            Visibility="Hidden"
+                            IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup 
+                            Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide">
+
+                                <Grid Name="DropDown"
+                              SnapsToDevicePixels="True"                
+                              MinWidth="{TemplateBinding ActualWidth}"
+                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+                                x:Name="DropDownBorder"
+                                Background="#FF3F3F3F"
+
+                                BorderThickness="1"
+                                BorderBrush="#888888"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                                <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsEditable"  Value="true">
+                                <Setter Property="IsTabStop" Value="false"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+
+        <!-- SimpleStyles: ComboBoxItem -->
+        <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                        <Border Name="Border"
+                              Padding="2"
+                              SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#FF4F4F4F"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid >
@@ -140,7 +286,7 @@
             <Path x:Name="HeaderDivider" Data="M50,890 L250,890" Fill="#FF99999C" Stroke="#FF99999C" Stretch="Fill" DockPanel.Dock="Bottom" Margin="-189,0,-72,0"/>
 
             <!--// Меню навигации по работе //-->
-                <Menu x:Name="NavMenu" 
+            <Menu x:Name="NavMenu" 
                   Width="470" Height="50" 
                   VerticalAlignment="Center" HorizontalAlignment="Left" 
                   Background="Transparent" Margin="5,0,0,0">
@@ -149,16 +295,16 @@
                         <VirtualizingStackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                
-                    <!--// Меню навигации по теории //-->
-                    <MenuItem x:Name="TheoryMenu"
+
+                <!--// Меню навигации по теории //-->
+                <MenuItem x:Name="TheoryMenu"
                           Width="150" Height="50" Header="Теория" 
                           Template="{StaticResource Menu_SubMenu_Template}">
                     <MenuItem.Icon>
                         <Image Source="/TheoryIcon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
                     </MenuItem.Icon>
-                    
-                        <!--// Элемент меню 1//-->
+
+                    <!--// Элемент меню 1//-->
                     <MenuItem x:Name="Theory1"
                               HorizontalContentAlignment="Center" 
                               Height="50" Header="Поколения сетей"
@@ -167,8 +313,8 @@
                             <Image Source="/Theory1Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    
-                        <!--// Элемент меню 2//-->
+
+                    <!--// Элемент меню 2//-->
                     <MenuItem x:Name="Theory2"
                               HorizontalContentAlignment="Center" 
                               Height="50" Header="Оборудование"
@@ -177,8 +323,8 @@
                             <Image Source="/Theory2Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    
-                        <!--// Элемент меню 3//-->
+
+                    <!--// Элемент меню 3//-->
                     <MenuItem x:Name="Theory3"
                               HorizontalContentAlignment="Center" 
                               Height="50" Header="Антенны"
@@ -187,8 +333,8 @@
                             <Image Source="/Theory3Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    
-                        <!--// Элемент меню 4//-->
+
+                    <!--// Элемент меню 4//-->
                     <MenuItem x:Name="Theory4"
                               HorizontalContentAlignment="Center" 
                               Height="50" Header="Распространение сигнала"
@@ -211,6 +357,15 @@
                               HorizontalContentAlignment="Center"
                               Height="50" Header="Задание 1"
                               Template="{StaticResource Item_Template}" Click="Practice1Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Practice1Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem x:Name="Practice2"
+                              HorizontalContentAlignment="Center"
+                              Height="50" Header="Задание 2"
+                              Template="{StaticResource Item_Template}" Click="Practice2Click">
                         <MenuItem.Icon>
                             <Image Source="/Practice1Icon.png" Width="45" Height="45" Stretch="Fill" Margin="5,0,0,0" />
                         </MenuItem.Icon>
@@ -282,7 +437,7 @@
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   DockPanel.Dock="Top">
 
-                <DockPanel x:Name="VariantPicker" Height="455" Width="490">
+                <DockPanel x:Name="VariantPicker" Height="455" Width="490" Visibility="Hidden">
                     <Label Content="Введите номер варианта: " FontSize="28" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox x:Name="VariantBox" 
@@ -296,7 +451,7 @@
                     Width="130" Height="26" 
                     VerticalAlignment="Bottom" HorizontalAlignment="Center"
                     Style="{StaticResource ControlButtonStyle}" 
-                    Click="ConfirmVariant" Margin="0,0,0,-30" />
+                    Click="ConfirmVariant" Margin="0,0,0,-30" Visibility="Hidden" />
 
                 <Button x:Name="StartPracticeButton" Content="Начать практику"
                     Width="130" Height="26" 
@@ -325,10 +480,93 @@
                        MaxHeight="455" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                 <Canvas x:Name="PracticeCanvas"  AllowDrop="True"
-                        DragOver="PracticeImage_Dragging" 
-                        Background="Transparent"
+                        DragOver="PracticeImage_Dragging"
                         Height="{Binding Height, ElementName=PracticeGrid}" 
-                        Width="{Binding Width, ElementName=PracticeGrid}" Visibility="Hidden">
+                        Width="{Binding Width, ElementName=PracticeGrid}" Background="#1AECECEC" Visibility="Hidden">
+
+                    <ComboBox x:Name="PracticeSelector1"
+                              Width="15" Height="13" 
+                              HorizontalAlignment="Center" Canvas.Top="427.5" 
+                              VerticalAlignment="Center" Canvas.Left="211" 
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector2"
+                          Width="20" Height="1" 
+                              HorizontalAlignment="Left" Canvas.Top="279" 
+                              VerticalAlignment="Center" Canvas.Left="155" 
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector3"
+                          Width="14" Height="0" 
+                              HorizontalAlignment="Left" Canvas.Top="183.073" 
+                              VerticalAlignment="Center" Canvas.Left="159.664"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector4"
+                          Width="11" Height="17" 
+                              HorizontalAlignment="Center" Canvas.Top="278.426" 
+                              VerticalAlignment="Center" Canvas.Left="176"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector5"
+                          Width="18" Height="3" 
+                              HorizontalAlignment="Center" Canvas.Left="523.9" Canvas.Top="227.5" 
+                              VerticalAlignment="Center"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector6"
+                          Width="20" Height="10" 
+                              HorizontalAlignment="Center" Canvas.Left="567.9" Canvas.Top="352.306" 
+                              VerticalAlignment="Center"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector7"
+                          Width="19" Height="5" 
+                              HorizontalAlignment="Left" Canvas.Left="503.4" Canvas.Top="226.073" 
+                              VerticalAlignment="Top"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector8"
+                          Width="18" Height="4" 
+                              HorizontalAlignment="Left" Canvas.Left="527.4" Canvas.Top="346.233" 
+                              VerticalAlignment="Top"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelector9"
+                          Width="20" Height="4" 
+                              HorizontalAlignment="Center" Canvas.Left="680.4" Canvas.Top="374.5" 
+                              VerticalAlignment="Top"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelectorA"
+                          Width="2" Height="12" 
+                              HorizontalAlignment="Center" Canvas.Left="219" Canvas.Top="183.073" 
+                              VerticalAlignment="Center"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelectorB"
+                        Width="18" Height="3" 
+                        Canvas.Left="763.4" Canvas.Top="227.219" 
+                              HorizontalAlignment="Left" VerticalAlignment="Top"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelectorC"
+                        Width="20" Height="10" 
+                        Canvas.Left="715.4" Canvas.Top="352.306" 
+                              HorizontalAlignment="Left" VerticalAlignment="Top"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelectorD"
+                        Width="19" Height="5" 
+                        Canvas.Left="742.063" Canvas.Top="226.073" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
+
+                    <ComboBox x:Name="PracticeSelectorE"
+                        Width="18" Height="4" 
+                        Canvas.Left="676.565" Canvas.Top="344.229" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              SelectionChanged="PracticeSelectorSelectionChanged" Visibility="Hidden" />
 
                     <Border x:Name="PracticeDraggableImage1"
                             MouseMove="PracticeDraggableImage_MouseMove"
@@ -461,47 +699,6 @@
                     </Border>
 
                 </Canvas>
-
-                <ComboBox x:Name="PracticeSelector1"
-                          Width="80" Height="26" DockPanel.Dock="Top" 
-                          HorizontalAlignment="Left" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector2"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Left" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector3"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Left" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector4"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Left" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector5"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector6"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector7"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector8"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector9"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
-                <ComboBox x:Name="PracticeSelector10"
-                          Width="80" Height="26" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center" 
-                          Foreground="#FF262626" Background="White" BorderBrush="#FFC1C1C1" Visibility="Hidden"/>
             </Grid>
         </DockPanel>
 

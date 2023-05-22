@@ -190,6 +190,9 @@
   <ItemGroup>
     <Resource Include="Practice1.2Image.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pracScheme.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.992.28\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.992.28\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
