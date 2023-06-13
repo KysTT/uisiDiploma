@@ -85,3 +85,32 @@ E:\бекап\бекап\Институт всё подряд\net6.0-windows\uis
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\obj\Release\Something1.csproj.CopyComplete
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\obj\Release\LabWork.exe
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\obj\Release\LabWork.pdb
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\runtimes\win-x86\native\WebView2Loader.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\runtimes\win-x64\native\WebView2Loader.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\LabWork.exe.config
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\LabWork.exe
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\LabWork.pdb
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\Microsoft.Web.WebView2.Core.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\Microsoft.Web.WebView2.WinForms.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\Microsoft.Web.WebView2.Wpf.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\Microsoft.Web.WebView2.Core.xml
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\Microsoft.Web.WebView2.WinForms.xml
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Release\Microsoft.Web.WebView2.Wpf.xml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\Something1.csproj.AssemblyReference.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\Something1.csproj.SuggestedBindingRedirects.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\Templates.baml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\MainWindow.g.cs
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\App.g.cs
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork_Content.g.cs
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork_MarkupCompile.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork_MarkupCompile.lref
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\App.baml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\MainWindow.baml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork.g.resources
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork.Properties.Resources.resources
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\Something1.csproj.GenerateResource.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\Something1.csproj.CoreCompileInputs.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\Something1.csproj.CopyComplete
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork.exe
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Release\LabWork.pdb

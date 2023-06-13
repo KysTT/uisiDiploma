@@ -56,6 +56,7 @@ E:\бекап\бекап\Институт всё подряд\net6.0-windows\vad
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\vadim\uisiDiploma\Something1\Something1\obj\Debug\Something1.csproj.CopyComplete
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\vadim\uisiDiploma\Something1\Something1\obj\Debug\Something1.exe
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\vadim\uisiDiploma\Something1\Something1\obj\Debug\Something1.pdb
+<<<<<<< HEAD
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
@@ -85,3 +86,34 @@ E:\бекап\бекап\Институт всё подряд\net6.0-windows\uis
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\obj\Debug\Something1.csproj.CopyComplete
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\obj\Debug\LabWork.exe
 E:\бекап\бекап\Институт всё подряд\net6.0-windows\uisiDiploma\Something1\obj\Debug\LabWork.pdb
+=======
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\LabWork.exe.config
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\LabWork.exe
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\LabWork.pdb
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\Microsoft.Web.WebView2.Core.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\Microsoft.Web.WebView2.WinForms.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\Microsoft.Web.WebView2.Wpf.dll
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\Microsoft.Web.WebView2.Core.xml
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
+C:\Diploma\newmaster\uisiDiploma\Something1\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\Something1.csproj.AssemblyReference.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\Something1.csproj.SuggestedBindingRedirects.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\Templates.baml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\MainWindow.g.cs
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\App.g.cs
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork_Content.g.cs
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork_MarkupCompile.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork_MarkupCompile.lref
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\App.baml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\MainWindow.baml
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork.g.resources
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork.Properties.Resources.resources
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\Something1.csproj.GenerateResource.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\Something1.csproj.CoreCompileInputs.cache
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\Something1.csproj.CopyComplete
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork.exe
+C:\Diploma\newmaster\uisiDiploma\Something1\obj\Debug\LabWork.pdb
+>>>>>>> 76264a68ff557519f12342d422208975643a1ea5
