@@ -2928,7 +2928,7 @@ namespace Something1
                     if (PracticeSelectorVoltageEq2.Tag.ToString() == "connected to PracticeSelector1")
                         RWellipse1.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
 
-                    if (PracticeSelectorVoltageEq1.Tag.ToString() == "connected to PracticeSelector2")
+                    if (PracticeSelectorVoltageEq2.Tag.ToString() == "connected to PracticeSelector2")
                         RWellipse2.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF605C"));
 
                     if (PracticeSelectorVoltageEq2.Tag.ToString() == "connected to PracticeSelector3")
