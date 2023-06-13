@@ -613,14 +613,12 @@
                 <TextBox x:Name="CalculatedValue" 
                          HorizontalAlignment="Left" Height="24" Margin="840,322,0,0" 
                          TextWrapping="Wrap" VerticalAlignment="Top" Width="92"
-                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ToolTip="Ответ округляется до &#xA;одного знака после запятой"/>
 
-                <Label Content="Рассчитанное значение&#xA;диаметра зоны покрытия&#xA;ответ округляется до &#xA;одного знака после запятой" HorizontalAlignment="Left" Height="67" Margin="798,250,0,0" VerticalAlignment="Top" Width="176"/>
-
-                <Label x:Name="rwLabel" Content="" 
-                       Height="68" Margin="803,382,25,33" Width="164"
+                <Label x:Name="rwLabel" Margin="803,371,25,33" Width="164"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
                 <Label Content="м" HorizontalAlignment="Left" Height="24" Margin="932,322,0,0" VerticalAlignment="Top" Width="30"/>
+                <Label Content="Рассчитанное значение" HorizontalAlignment="Left" Height="27" Margin="810,290,0,0" VerticalAlignment="Top" Width="157"/>
 
             </Grid>
         </DockPanel>
@@ -811,7 +809,7 @@
 
                 </Canvas>
                 <ScrollViewer x:Name="Practice2ScrollViewer"
-                    Width="746" 
+                    Width="746" Height="455" MaxHeight="700"
                     VerticalScrollBarVisibility="Visible" Visibility="Hidden">
 
                     <Canvas x:Name="Practice2Canvas"  AllowDrop="True"
